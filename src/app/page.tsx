@@ -5,14 +5,14 @@ import Image from 'next/image';
 import { Quiz } from '@/components/quiz/Quiz';
 import placeholderImages from '@/lib/placeholder-images.json';
 import { useState, useMemo } from 'react';
-import { quizQuestions, quizTopics, QuizQuestion as QuizQuestionType } from '@/lib/quiz-data';
+import { quizQuestions, quizTopics } from '@/lib/quiz-data';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from '@/components/ui/label';
 
 type Language = 'en' | 'bn';
-type Topic = 'all' | 'national_symbols' | 'geography' | 'literature_arts' | 'history' | 'culture_lifestyle' | 'sports';
+type Topic = 'all' | 'alphabet' | 'national_symbols' | 'geography' | 'literature_arts' | 'history' | 'culture_lifestyle' | 'sports';
 
 export default function Home() {
   const headerImage = placeholderImages.placeholderImages.find(p => p.id === "shapla-flower");
@@ -26,9 +26,9 @@ export default function Home() {
   const questions = useMemo(() => {
     const questionsByLang = quizQuestions[language];
     if (selectedTopic === 'all') {
-      return Object.values(questionsByLang).flat();
+      return Object.values(questionsByLang).flat().sort(() => Math.random() - 0.5);
     }
-    return questionsByLang[selectedTopic] || [];
+    return (questionsByLang[selectedTopic] || []).sort(() => Math.random() - 0.5);
   }, [language, selectedTopic]);
   
   const handleLanguageChange = (lang: Language) => {
@@ -48,7 +48,7 @@ export default function Home() {
   if (quizStarted) {
     return (
       <main className="flex min-h-screen flex-col items-center p-4 sm:p-8 md:p-12">
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-4xl">
            <Quiz questions={questions} language={language} onGoHome={handleGoHome} />
         </div>
       </main>

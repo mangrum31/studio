@@ -12,6 +12,7 @@ import { Feedback } from "./Feedback";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 interface Props {
   question: QuizQuestionType;
@@ -51,12 +52,12 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
     setIsLoading(false);
   };
 
-  const getOptionClassName = (option: string) => {
+  const getOptionClassName = (optionText: string) => {
     if (!submitted) return "";
-    if (option === question.correctAnswer) {
+    if (optionText === question.correctAnswer) {
         return "text-green-700 dark:text-green-400 font-bold";
     }
-    if (option === selectedOption && !isCorrect) {
+    if (optionText === selectedOption && !isCorrect) {
         return "text-red-700 dark:text-red-400";
     }
     return "text-muted-foreground";
@@ -84,20 +85,31 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
             value={selectedOption || ""}
             onValueChange={setSelectedOption}
             disabled={submitted}
-            className="space-y-4"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
             {question.options.map((option) => (
               <Label
-                key={option}
-                htmlFor={option}
-                className={cn("flex items-center space-x-3 p-4 rounded-lg border transition-all cursor-pointer hover:bg-secondary/50", 
-                    selectedOption === option && !submitted && "border-primary",
-                    submitted && option === question.correctAnswer && "border-accent bg-accent/20",
-                    submitted && option === selectedOption && !isCorrect && "border-destructive bg-destructive/10"
+                key={option.text}
+                htmlFor={option.text}
+                className={cn("flex flex-col items-center justify-center space-y-2 p-4 rounded-lg border transition-all cursor-pointer hover:bg-secondary/50", 
+                    selectedOption === option.text && !submitted && "border-primary",
+                    submitted && option.text === question.correctAnswer && "border-accent bg-accent/20",
+                    submitted && option.text === selectedOption && !isCorrect && "border-destructive bg-destructive/10"
                 )}
               >
-                <RadioGroupItem value={option} id={option} />
-                <span className={cn("text-base", getOptionClassName(option))}>{option}</span>
+                <RadioGroupItem value={option.text} id={option.text} className="sr-only" />
+                {option.imageUrl && (
+                    <div className="relative w-32 h-32 mb-2">
+                        <Image 
+                            src={option.imageUrl}
+                            alt={option.text}
+                            fill
+                            className="object-cover rounded-md"
+                            data-ai-hint={option.imageHint}
+                        />
+                    </div>
+                )}
+                <span className={cn("text-base", getOptionClassName(option.text))}>{option.text}</span>
               </Label>
             ))}
           </RadioGroup>

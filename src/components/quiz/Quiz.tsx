@@ -66,6 +66,18 @@ export function Quiz({ questions, language, onGoHome }: QuizProps) {
       />
     );
   }
+  
+  if (questions.length === 0) {
+    return (
+      <div className="text-center">
+        <p>No questions available for this topic yet. Please select another one.</p>
+        <Button onClick={onGoHome} className="mt-4">
+            <Home className="mr-2 h-4 w-4" />
+            {language === 'en' ? 'Home' : 'হোম'}
+        </Button>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-8">

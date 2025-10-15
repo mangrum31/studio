@@ -1,8 +1,14 @@
 
+export interface QuizOption {
+  text: string;
+  imageUrl?: string;
+  imageHint?: string;
+}
+
 export interface QuizQuestion {
   id: number;
   question: string;
-  options: string[];
+  options: QuizOption[];
   correctAnswer: string;
   topic: string;
 }
@@ -13,6 +19,10 @@ interface QuizData {
 }
 
 export const quizTopics = {
+  alphabet: {
+    en: "Alphabet",
+    bn: "বর্ণমালা",
+  },
   national_symbols: {
     en: "National Symbols",
     bn: "জাতীয় প্রতীক",
@@ -41,46 +51,84 @@ export const quizTopics = {
 
 export const quizQuestions: QuizData = {
   en: {
+    alphabet: [
+      {
+        id: 20,
+        question: "What does this picture start with?",
+        options: [
+          { text: "A", imageUrl: "https://picsum.photos/seed/apple/200/200", imageHint: "apple" },
+          { text: "B" },
+          { text: "C" },
+          { text: "D" },
+        ],
+        correctAnswer: "A",
+        topic: "Alphabet",
+      },
+      {
+        id: 21,
+        question: "What does this picture start with?",
+        options: [
+          { text: "A" },
+          { text: "B", imageUrl: "https://picsum.photos/seed/ball/200/200", imageHint: "ball" },
+          { text: "C" },
+          { text: "D" },
+        ],
+        correctAnswer: "B",
+        topic: "Alphabet",
+      },
+      {
+        id: 22,
+        question: "What does this picture start with?",
+        options: [
+          { text: "A" },
+          { text: "B" },
+          { text: "C", imageUrl: "https://picsum.photos/seed/cat/200/200", imageHint: "cat" },
+          { text: "D" },
+        ],
+        correctAnswer: "C",
+        topic: "Alphabet",
+      },
+    ],
     national_symbols: [
       {
         id: 1,
         question: "What is the national flower of Bangladesh?",
-        options: ["Rose", "Water Lily (Shapla)", "Marigold", "Tulip"],
+        options: [{text: "Rose"}, {text: "Water Lily (Shapla)"}, {text: "Marigold"}, {text: "Tulip"}],
         correctAnswer: "Water Lily (Shapla)",
         topic: "National Symbols",
       },
       {
         id: 2,
         question: "What is the national animal of Bangladesh?",
-        options: ["Elephant", "Lion", "Royal Bengal Tiger", "Deer"],
+        options: [{text: "Elephant"}, {text: "Lion"}, {text: "Royal Bengal Tiger"}, {text: "Deer"}],
         correctAnswer: "Royal Bengal Tiger",
         topic: "National Symbols",
       },
       {
         id: 4,
         question: "What are the primary colors of the Bangladeshi flag?",
-        options: ["Blue and White", "Green and Yellow", "Red and Green", "Black and Red"],
+        options: [{text: "Blue and White"}, {text: "Green and Yellow"}, {text: "Red and Green"}, {text: "Black and Red"}],
         correctAnswer: "Red and Green",
         topic: "National Symbols",
       },
       {
         id: 8,
         question: "Which is the national fruit of Bangladesh?",
-        options: ["Mango", "Jackfruit", "Lichi", "Banana"],
+        options: [{text: "Mango"}, {text: "Jackfruit"}, {text: "Lichi"}, {text: "Banana"}],
         correctAnswer: "Jackfruit",
         topic: "National Symbols"
       },
       {
         id: 11,
         question: "What is the national tree of Bangladesh?",
-        options: ["Banyan Tree", "Mango Tree", "Jackfruit Tree", "Neem Tree"],
+        options: [{text: "Banyan Tree"}, {text: "Mango Tree"}, {text: "Jackfruit Tree"}, {text: "Neem Tree"}],
         correctAnswer: "Mango Tree",
         topic: "National Symbols"
       },
       {
         id: 12,
         question: "What is the national bird of Bangladesh?",
-        options: ["Crow", "Dove", "Magpie-robin (Doyel)", "Parrot"],
+        options: [{text: "Crow"}, {text: "Dove"}, {text: "Magpie-robin (Doyel)"}, {text: "Parrot"}],
         correctAnswer: "Magpie-robin (Doyel)",
         topic: "National Symbols"
       }
@@ -89,28 +137,28 @@ export const quizQuestions: QuizData = {
       {
         id: 3,
         question: "Which city is the capital of Bangladesh?",
-        options: ["Chittagong", "Sylhet", "Khulna", "Dhaka"],
+        options: [{text: "Chittagong"}, {text: "Sylhet"}, {text: "Khulna"}, {text: "Dhaka"}],
         correctAnswer: "Dhaka",
         topic: "Geography",
       },
       {
         id: 5,
         question: "What is the name of the longest sea beach in the world, located in Bangladesh?",
-        options: ["Cox's Bazar", "Kuakata", "Patenga", "Inani Beach"],
+        options: [{text: "Cox's Bazar"}, {text: "Kuakata"}, {text: "Patenga"}, {text: "Inani Beach"}],
         correctAnswer: "Cox's Bazar",
         topic: "Geography",
       },
       {
         id: 7,
         question: "What is the largest mangrove forest in the world, located in Bangladesh?",
-        options: ["Amazon Rainforest", "Sundarbans", "Bhawal National Park", "Lawachara National Park"],
+        options: [{text: "Amazon Rainforest"}, {text: "Sundarbans"}, {text: "Bhawal National Park"}, {text: "Lawachara National Park"}],
         correctAnswer: "Sundarbans",
         topic: "Geography"
       },
       {
         id: 13,
         question: "Which river is known as the 'Jamuna' in Bangladesh?",
-        options: ["Ganges", "Padma", "Brahmaputra", "Meghna"],
+        options: [{text: "Ganges"}, {text: "Padma"}, {text: "Brahmaputra"}, {text: "Meghna"}],
         correctAnswer: "Brahmaputra",
         topic: "Geography"
       },
@@ -119,14 +167,14 @@ export const quizQuestions: QuizData = {
       {
         id: 6,
         question: "Who is the national poet of Bangladesh?",
-        options: ["Rabindranath Tagore", "Jasimuddin", "Kazi Nazrul Islam", "Sukumar Ray"],
+        options: [{text: "Rabindranath Tagore"}, {text: "Jasimuddin"}, {text: "Kazi Nazrul Islam"}, {text: "Sukumar Ray"}],
         correctAnswer: "Kazi Nazrul Islam",
         topic: "Literature & Arts"
       },
       {
         id: 14,
         question: "Who wrote the national anthem of Bangladesh, 'Amar Shonar Bangla'?",
-        options: ["Kazi Nazrul Islam", "Jasimuddin", "Rabindranath Tagore", "Farrukh Ahmad"],
+        options: [{text: "Kazi Nazrul Islam"}, {text: "Jasimuddin"}, {text: "Rabindranath Tagore"}, {text: "Farrukh Ahmad"}],
         correctAnswer: "Rabindranath Tagore",
         topic: "Literature & Arts"
       },
@@ -135,21 +183,21 @@ export const quizQuestions: QuizData = {
       {
         id: 9,
         question: "When did Bangladesh gain independence?",
-        options: ["1952", "1965", "1971", "1980"],
+        options: [{text: "1952"}, {text: "1965"}, {text: "1971"}, {text: "1980"}],
         correctAnswer: "1971",
         topic: "History"
       },
       {
         id: 10,
         question: "What is the historical name for the 'Language Movement Day'?",
-        options: ["Independence Day", "Ekushey February", "Victory Day", "Pohela Boishakh"],
+        options: [{text: "Independence Day"}, {text: "Ekushey February"}, {text: "Victory Day"}, {text: "Pohela Boishakh"}],
         correctAnswer: "Ekushey February",
         topic: "History"
       },
       {
         id: 15,
         question: "The liberation war of Bangladesh lasted for how many months?",
-        options: ["6 months", "9 months", "1 year", "2 years"],
+        options: [{text: "6 months"}, {text: "9 months"}, {text: "1 year"}, {text: "2 years"}],
         correctAnswer: "9 months",
         topic: "History"
       },
@@ -158,14 +206,14 @@ export const quizQuestions: QuizData = {
       {
         id: 16,
         question: "What is the main festival celebrated by Bengalis regardless of religion?",
-        options: ["Eid", "Durga Puja", "Pohela Boishakh", "Christmas"],
+        options: [{text: "Eid"}, {text: "Durga Puja"}, {text: "Pohela Boishakh"}, {text: "Christmas"}],
         correctAnswer: "Pohela Boishakh",
         topic: "Culture & Lifestyle"
       },
       {
         id: 17,
         question: "What is a 'Rickshaw' in Bangladesh?",
-        options: ["A type of food", "A traditional dress", "A three-wheeled passenger cart", "A musical instrument"],
+        options: [{text: "A type of food"}, {text: "A traditional dress"}, {text: "A three-wheeled passenger cart"}, {text: "A musical instrument"}],
         correctAnswer: "A three-wheeled passenger cart",
         topic: "Culture & Lifestyle"
       },
@@ -174,60 +222,98 @@ export const quizQuestions: QuizData = {
       {
         id: 18,
         question: "What is the national sport of Bangladesh?",
-        options: ["Cricket", "Football", "Kabaddi", "Hockey"],
+        options: [{text: "Cricket"}, {text: "Football"}, {text: "Kabaddi"}, {text: "Hockey"}],
         correctAnswer: "Kabaddi",
         topic: "Sports"
       },
       {
         id: 19,
         question: "Which cricketer is known as the 'Tiger of Bengal'?",
-        options: ["Shakib Al Hasan", "Mashrafe Mortaza", "Tamim Iqbal", "Mushfiqur Rahim"],
+        options: [{text: "Shakib Al Hasan"}, {text: "Mashrafe Mortaza"}, {text: "Tamim Iqbal"}, {text: "Mushfiqur Rahim"}],
         correctAnswer: "Mashrafe Mortaza",
         topic: "Sports"
       }
     ]
   },
   bn: {
+    alphabet: [
+      {
+        id: 20,
+        question: "এই ছবিটি কি দিয়ে শুরু হয়?",
+        options: [
+          { text: "A", imageUrl: "https://picsum.photos/seed/apple/200/200", imageHint: "apple" },
+          { text: "B" },
+          { text: "C" },
+          { text: "D" },
+        ],
+        correctAnswer: "A",
+        topic: "বর্ণমালা",
+      },
+      {
+        id: 21,
+        question: "এই ছবিটি কি দিয়ে শুরু হয়?",
+        options: [
+          { text: "A" },
+          { text: "B", imageUrl: "https://picsum.photos/seed/ball/200/200", imageHint: "ball" },
+          { text: "C" },
+          { text: "D" },
+        ],
+        correctAnswer: "B",
+        topic: "বর্ণমালা",
+      },
+      {
+        id: 22,
+        question: "এই ছবিটি কি দিয়ে শুরু হয়?",
+        options: [
+          { text: "A" },
+          { text: "B" },
+          { text: "C", imageUrl: "https://picsum.photos/seed/cat/200/200", imageHint: "cat" },
+          { text: "D" },
+        ],
+        correctAnswer: "C",
+        topic: "বর্ণমালা",
+      },
+    ],
     national_symbols: [
       {
         id: 1,
         question: "বাংলাদেশের জাতীয় ফুল কী?",
-        options: ["গোলাপ", "শাপলা", "গাঁদা", "টিউলিপ"],
+        options: [{text: "গোলাপ"}, {text: "শাপলা"}, {text: "গাঁদা"}, {text: "টিউলিপ"}],
         correctAnswer: "শাপলা",
         topic: "জাতীয় প্রতীক",
       },
       {
         id: 2,
         question: "বাংলাদেশের জাতীয় পশু কী?",
-        options: ["হাতি", "সিংহ", "রয়েল বেঙ্গল টাইগার", "হরিণ"],
+        options: [{text: "হাতি"}, {text: "সিংহ"}, {text: "রয়েল বেঙ্গল টাইগার"}, {text: "হরিণ"}],
         correctAnswer: "রয়েল বেঙ্গল টাইগার",
         topic: "জাতীয় প্রতীক",
       },
       {
         id: 4,
         question: "বাংলাদেশী পতাকার প্রধান রং কি কি?",
-        options: ["নীল এবং সাদা", "সবুজ এবং হলুদ", "লাল এবং সবুজ", "কালো এবং লাল"],
+        options: [{text: "নীল এবং সাদা"}, {text: "সবুজ এবং হলুদ"}, {text: "লাল এবং সবুজ"}, {text: "কালো এবং লাল"}],
         correctAnswer: "লাল এবং সবুজ",
         topic: "জাতীয় প্রতীক",
       },
       {
         id: 8,
         question: "বাংলাদেশের জাতীয় ফল কোনটি?",
-        options: ["আম", "কাঁঠাল", "লিচু", "কলা"],
+        options: [{text: "আম"}, {text: "কাঁঠাল"}, {text: "লিচু"}, {text: "কলা"}],
         correctAnswer: "কাঁঠাল",
         topic: "জাতীয় প্রতীক"
       },
       {
         id: 11,
         question: "বাংলাদেশের জাতীয় বৃক্ষ কোনটি?",
-        options: ["বট গাছ", "আম গাছ", "কাঁঠাল গাছ", "নিম গাছ"],
+        options: [{text: "বট গাছ"}, {text: "আম গাছ"}, {text: "কাঁঠাল গাছ"}, {text: "নিম গাছ"}],
         correctAnswer: "আম গাছ",
         topic: "জাতীয় প্রতীক"
       },
       {
         id: 12,
         question: "বাংলাদেশের জাতীয় পাখি কোনটি?",
-        options: ["কাক", "কবুতর", "দোয়েল", "টিয়া"],
+        options: [{text: "কাক"}, {text: "কবুতর"}, {text: "দোয়েল"}, {text: "টিয়া"}],
         correctAnswer: "দোয়েল",
         topic: "জাতীয় প্রতীক"
       }
@@ -236,28 +322,28 @@ export const quizQuestions: QuizData = {
       {
         id: 3,
         question: "বাংলাদেশের রাজধানী কোন শহর?",
-        options: ["চট্টগ্রাম", "সিলেট", "খুলনা", "ঢাকা"],
+        options: [{text: "চট্টগ্রাম"}, {text: "সিলেট"}, {text: "খুলনা"}, {text: "ঢাকা"}],
         correctAnswer: "ঢাকা",
         topic: "ভূগোল",
       },
       {
         id: 5,
         question: "বাংলাদেশে অবস্থিত বিশ্বের দীর্ঘতম সমুদ্র সৈকতের নাম কী?",
-        options: ["কক্সবাজার", "কুয়াকাটা", "পতেঙ্গা", "ইনানী বিচ"],
+        options: [{text: "কক্সবাজার"}, {text: "কুয়াকাটা"}, {text: "পতেঙ্গা"}, {text: "ইনানী বিচ"}],
         correctAnswer: "কক্সবাজার",
         topic: "ভূগোল",
       },
       {
         id: 7,
         question: "বিশ্বের বৃহত্তম ম্যানগ্রোভ বন কোনটি, যা বাংলাদেশে অবস্থিত?",
-        options: ["আমাজন রেইনফরেস্ট", "সুন্দরবন", "ভাওয়াল জাতীয় উদ্যান", "লাউয়াছড়া জাতীয় উদ্যান"],
+        options: [{text: "আমাজন রেইনফরেস্ট"}, {text: "সুন্দরবন"}, {text: "ভাওয়াল জাতীয় উদ্যান"}, {text: "লাউয়াছড়া জাতীয় উদ্যান"}],
         correctAnswer: "সুন্দরবন",
         topic: "ভূগোল"
       },
       {
         id: 13,
         question: "বাংলাদেশে কোন নদী 'যমুনা' নামে পরিচিত?",
-        options: ["গঙ্গা", "পদ্মা", "ব্রহ্মপুত্র", "মেঘনা"],
+        options: [{text: "গঙ্গা"}, {text: "পদ্মা"}, {text: "ব্রহ্মপুত্র"}, {text: "মেঘনা"}],
         correctAnswer: "ব্রহ্মপুত্র",
         topic: "ভূগোল"
       },
@@ -266,14 +352,14 @@ export const quizQuestions: QuizData = {
       {
           id: 6,
           question: "বাংলাদেশের জাতীয় কবি কে?",
-          options: ["রবীন্দ্রনাথ ঠাকুর", "জসীমউদ্দিন", "কাজী নজরুল ইসলাম", "সুকুমার রায়"],
+          options: [{text: "রবীন্দ্রনাথ ঠাকুর"}, {text: "জসীমউদ্দিন"}, {text: "কাজী নজরুল ইসলাম"}, {text: "সুকুমার রায়"}],
           correctAnswer: "কাজী নজরুল ইসলাম",
           topic: "সাহিত্য ও শিল্প"
       },
       {
         id: 14,
         question: "বাংলাদেশের জাতীয় সঙ্গীত 'আমার সোনার বাংলা' কে লিখেছেন?",
-        options: ["কাজী নজরুল ইসলাম", "জসীমউদ্দিন", "রবীন্দ্রনাথ ঠাকুর", "ফররুখ আহমদ"],
+        options: [{text: "কাজী নজরুল ইসলাম"}, {text: "জসীমউদ্দিন"}, {text: "রবীন্দ্রনাথ ঠাকুর"}, {text: "ফররুখ আহমদ"}],
         correctAnswer: "রবীন্দ্রনাথ ঠাকুর",
         topic: "সাহিত্য ও শিল্প"
       },
@@ -282,21 +368,21 @@ export const quizQuestions: QuizData = {
       {
         id: 9,
         question: "বাংলাদেশ কবে স্বাধীনতা লাভ করে?",
-        options: ["১৯৫২", "১৯৬৫", "১৯৭১", "১৯৮০"],
+        options: [{text: "১৯৫২"}, {text: "১৯৬৫"}, {text: "১৯৭১"}, {text: "১৯৮০"}],
         correctAnswer: "১৯৭১",
         topic: "ইতিহাস"
       },
       {
         id: 10,
         question: "'ভাষা আন্দোলন দিবস' এর ঐতিহাসিক নাম কি?",
-        options: ["স্বাধীনতা দিবস", "একুশে ফেব্রুয়ারি", "বিজয় দিবস", "পহেলা বৈশাখ"],
+        options: [{text: "স্বাধীনতা দিবস"}, {text: "একুশে ফেব্রুয়ারি"}, {text: "বিজয় দিবস"}, {text: "পহেলা বৈশাখ"}],
         correctAnswer: "একুশে ফেব্রুয়ারি",
         topic: "ইতিহাস"
       },
       {
         id: 15,
         question: "বাংলাদেশের মুক্তিযুদ্ধ কত মাস স্থায়ী হয়েছিল?",
-        options: ["৬ মাস", "৯ মাস", "১ বছর", "২ বছর"],
+        options: [{text: "৬ মাস"}, {text: "৯ মাস"}, {text: "১ বছর"}, {text: "২ বছর"}],
         correctAnswer: "৯ মাস",
         topic: "ইতিহাস"
       },
@@ -305,14 +391,14 @@ export const quizQuestions: QuizData = {
       {
         id: 16,
         question: "ধর্ম-বর্ণ নির্বিশেষে বাঙালিরা কোন প্রধান উৎসব পালন করে?",
-        options: ["ঈদ", "দুর্গাপূজা", "পহেলা বৈশাখ", "ক্রিসমাস"],
+        options: [{text: "ঈদ"}, {text: "দুর্গাপূজা"}, {text: "পহেলা বৈশাখ"}, {text: "ক্রিসমাস"}],
         correctAnswer: "পহেলা বৈশাখ",
         topic: "সংস্কৃতি ও জীবনধারা"
       },
       {
         id: 17,
         question: "বাংলাদেশে 'রিকশা' কী?",
-        options: ["এক ধরনের খাবার", "একটি ঐতিহ্যবাহী পোশাক", "একটি তিন চাকার যাত্রীবাহী গাড়ি", "একটি বাদ্যযন্ত্র"],
+        options: [{text: "এক ধরনের খাবার"}, {text: "একটি ঐতিহ্যবাহী পোশাক"}, {text: "একটি তিন চাকার যাত্রীবাহী গাড়ি"}, {text: "একটি বাদ্যযন্ত্র"}],
         correctAnswer: "একটি তিন চাকার যাত্রীবাহী গাড়ি",
         topic: "সংস্কৃতি ও জীবনধারা"
       },
@@ -321,14 +407,14 @@ export const quizQuestions: QuizData = {
       {
         id: 18,
         question: "বাংলাদেশের জাতীয় খেলা কোনটি?",
-        options: ["ক্রিকেট", "ফুটবল", "কাবাডি", "হকি"],
+        options: [{text: "ক্রিকেট"}, {text: "ফুটবল"}, {text: "কাবাডি"}, {text: "হকি"}],
         correctAnswer: "কাবাডি",
         topic: "খেলাধুলা"
       },
       {
         id: 19,
         question: "কোন ক্রিকেটার 'বাংলার টাইগার' নামে পরিচিত?",
-        options: ["সাকিব আল হাসান", "মাশরাফি মুর্তজা", "তামিম ইকবাল", "মুশফিকুর রহিম"],
+        options: [{text: "সাকিব আল হাসান"}, {text: "মাশরাফি মুর্তজা"}, {text: "তামিম ইকবাল"}, {text: "মুশফিকুর রহিম"}],
         correctAnswer: "মাশরাফি মুর্তজা",
         topic: "খেলাধুলা"
       }
