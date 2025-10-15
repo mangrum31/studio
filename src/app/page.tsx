@@ -73,7 +73,7 @@ export default function Home() {
       <h1 className="font-headline text-4xl sm:text-5xl font-bold text-primary wavy-text">
         {text.split('').map((char, index) => (
           <span key={index} style={{ '--i': index } as React.CSSProperties}>
-            {char === ' ' ? ' ' : char}
+            {char === ' ' ? '\u00A0' : char}
           </span>
         ))}
       </h1>
