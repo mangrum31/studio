@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 import TopNav from '@/components/TopNav';
 import InstallPWAButton from '@/components/InstallPWAButton';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Quiz Box',
@@ -39,6 +40,19 @@ export default function RootLayout({
           </div>
           <Toaster />
         </FirebaseClientProvider>
+        <Script id="service-worker-registration">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').then(registration => {
+                  console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, err => {
+                  console.log('ServiceWorker registration failed: ', err);
+                });
+              });
+            }
+          `}
+        </Script>
       </body>
     </html>
   );
