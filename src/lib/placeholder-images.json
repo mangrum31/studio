@@ -1,3 +1,22 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "bengal-tiger",
+      "description": "A majestic Bengal tiger in the Sundarbans",
+      "imageUrl": "https://picsum.photos/seed/1/600/400",
+      "imageHint": "bengal tiger"
+    },
+    {
+      "id": "shapla-flower",
+      "description": "A beautiful white water lily (Shapla), the national flower of Bangladesh",
+      "imageUrl": "https://picsum.photos/seed/2/200/200",
+      "imageHint": "water lily"
+    },
+    {
+      "id": "rickshaw-art",
+      "description": "A colorfully painted rickshaw, a common mode of transport in Bangladesh",
+      "imageUrl": "https://picsum.photos/seed/3/600/400",
+      "imageHint": "rickshaw art"
+    }
+  ]
 }

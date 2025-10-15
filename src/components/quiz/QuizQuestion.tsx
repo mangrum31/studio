@@ -1,0 +1,113 @@
+"use client";
+
+import { useState } from "react";
+import type { QuizQuestion as QuizQuestionType } from "@/lib/quiz-data";
+import { getAIfeedback } from "@/app/actions";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Feedback } from "./Feedback";
+import { Progress } from "@/components/ui/progress";
+import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
+
+interface Props {
+  question: QuizQuestionType;
+  questionNumber: number;
+  totalQuestions: number;
+  onAnswer: (isCorrect: boolean, answer: string) => void;
+  onNext: () => void;
+}
+
+export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswer, onNext }: Props) {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedOption) return;
+
+    setIsLoading(true);
+    setSubmitted(true);
+    const correct = selectedOption === question.correctAnswer;
+    setIsCorrect(correct);
+    onAnswer(correct, selectedOption);
+
+    const aiFeedback = await getAIfeedback({
+      question: question.question,
+      answer: selectedOption,
+      isCorrect: correct,
+      correctAnswer: question.correctAnswer,
+      topic: question.topic,
+    });
+
+    setFeedback(aiFeedback.feedback);
+    setIsLoading(false);
+  };
+
+  const getOptionClassName = (option: string) => {
+    if (!submitted) return "";
+    if (option === question.correctAnswer) {
+        return "text-green-700 dark:text-green-400 font-bold";
+    }
+    if (option === selectedOption && !isCorrect) {
+        return "text-red-700 dark:text-red-400";
+    }
+    return "text-muted-foreground";
+  }
+
+  return (
+    <Card className="w-full shadow-lg transition-all duration-300">
+      <CardHeader>
+        <CardDescription>
+          Question {questionNumber} of {totalQuestions}
+        </CardDescription>
+        <CardTitle className="font-headline text-2xl">{question.question}</CardTitle>
+        <Progress value={(questionNumber / totalQuestions) * 100} className="w-full mt-2" />
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit}>
+          <RadioGroup
+            value={selectedOption || ""}
+            onValueChange={setSelectedOption}
+            disabled={submitted}
+            className="space-y-4"
+          >
+            {question.options.map((option) => (
+              <Label
+                key={option}
+                htmlFor={option}
+                className={cn("flex items-center space-x-3 p-4 rounded-lg border transition-all cursor-pointer hover:bg-secondary/50", 
+                    selectedOption === option && !submitted && "border-primary",
+                    submitted && option === question.correctAnswer && "border-accent bg-accent/20",
+                    submitted && option === selectedOption && !isCorrect && "border-destructive bg-destructive/10"
+                )}
+              >
+                <RadioGroupItem value={option} id={option} />
+                <span className={cn("text-base", getOptionClassName(option))}>{option}</span>
+              </Label>
+            ))}
+          </RadioGroup>
+        </form>
+      </CardContent>
+      <CardFooter className="flex flex-col items-stretch space-y-4">
+        {submitted ? (
+          <>
+            <Feedback feedback={feedback} isCorrect={isCorrect} isLoading={isLoading} />
+            <Button onClick={onNext} className="w-full">
+                {questionNumber === totalQuestions ? "Finish Quiz" : "Next Question"} <ArrowRight className="ml-2"/>
+            </Button>
+          </>
+        ) : (
+          <Button onClick={handleSubmit} disabled={!selectedOption} className="w-full">
+            Submit Answer
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
+  );
+}
