@@ -55,11 +55,14 @@ export default function HistoryPage() {
   const [feedbackState, setFeedbackState] = useState<FeedbackState>({});
 
   useEffect(() => {
-    if (!isLoading && attempts && attempts.length > 0) {
-      setSelectedAttempt(attempts[0]);
-      setDetailViewOpen(true);
+    if (!isLoading && attempts && attempts.length > 0 && !selectedAttempt) {
+        const mostRecentAttempt = attempts[0];
+        if (mostRecentAttempt) {
+            setSelectedAttempt(mostRecentAttempt);
+            setDetailViewOpen(true);
+        }
     }
-  }, [isLoading, attempts]);
+  }, [isLoading, attempts, selectedAttempt]);
 
   const handleDelete = (attemptId: string) => {
     if (!user || !firestore) return;
@@ -85,6 +88,8 @@ export default function HistoryPage() {
     setDetailViewOpen(isOpen);
     if (!isOpen) {
       setFeedbackState({});
+      // When closing the main dialog, we reset selectedAttempt so the auto-open effect can trigger again next time.
+      setSelectedAttempt(null);
     }
   }
 
@@ -100,14 +105,22 @@ export default function HistoryPage() {
 
   if (isLoading || isUserLoading) {
     return (
-      <div className="w-full max-w-4xl space-y-4">
-        <Skeleton className="h-12 w-1/2 mx-auto" />
+      <div className="w-full max-w-4xl space-y-8">
+        <header className="text-center">
+            <Skeleton className="h-12 w-1/2 mx-auto" />
+        </header>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {[...Array(6)].map((_, i) => (
             <Card key={i}>
               <CardHeader><Skeleton className="h-6 w-3/4" /></CardHeader>
-              <CardContent><Skeleton className="h-8 w-1/4" /></CardContent>
-              <CardFooter><Skeleton className="h-10 w-full" /></CardFooter>
+              <CardContent className="space-y-2">
+                <Skeleton className="h-8 w-1/4" />
+                <Skeleton className="h-4 w-1/2" />
+              </CardContent>
+              <CardFooter className="flex gap-2">
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-10 w-10" />
+              </CardFooter>
             </Card>
           ))}
         </div>
@@ -207,7 +220,7 @@ export default function HistoryPage() {
                       <div className={cn("flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center", answer.isCorrect ? "bg-green-500" : "bg-destructive")}>
                         {answer.isCorrect ? <CheckCircle className="w-4 h-4 text-white" /> : <XCircle className="w-4 h-4 text-white" />}
                       </div>
-                      <div className="flex-1 space-y-1">
+                      <div className="flex-1 space-y-2">
                         <p className="font-semibold">{index + 1}. {answer.questionText}</p>
                         <p className={cn("text-sm", answer.isCorrect ? "text-green-500" : "text-destructive")}>
                           Your answer: {answer.selectedAnswer}
@@ -218,22 +231,20 @@ export default function HistoryPage() {
                           </p>
                         )}
 
-                        {!answer.isCorrect && (
-                          <div className='mt-2'>
-                            {feedbackState[answer.questionId]?.isLoading ? (
-                              <Skeleton className="h-10 w-full" />
-                            ) : feedbackState[answer.questionId]?.feedback ? (
-                              <p className="text-sm bg-accent/50 p-2 rounded-md border border-accent">
-                                {feedbackState[answer.questionId]?.feedback}
-                              </p>
-                            ) : (
-                              <Button size="sm" variant="outline" onClick={() => handleGenerateFeedback(answer)}>
-                                <Sparkles className="mr-2 h-4 w-4" />
-                                Get Explanation
-                              </Button>
-                            )}
-                          </div>
-                        )}
+                        <div className='mt-2'>
+                          {feedbackState[answer.questionId]?.isLoading ? (
+                            <Skeleton className="h-10 w-full" />
+                          ) : feedbackState[answer.questionId]?.feedback ? (
+                            <p className="text-sm bg-accent/50 p-3 rounded-md border border-accent">
+                              {feedbackState[answer.questionId]?.feedback}
+                            </p>
+                          ) : (
+                            <Button size="sm" variant="outline" onClick={() => handleGenerateFeedback(answer)}>
+                              <Sparkles className="mr-2 h-4 w-4" />
+                              {answer.isCorrect ? "Why was this correct?" : "Get Explanation"}
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     </div>
                     {index < selectedAttempt.answers.length - 1 && <Separator className="my-6" />}
@@ -247,3 +258,5 @@ export default function HistoryPage() {
     </div>
   );
 }
+
+    
