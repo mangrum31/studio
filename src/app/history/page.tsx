@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Trophy, Trash2, Eye, CheckCircle, XCircle, Sparkles } from 'lucide-react';
 import { quizTopics } from '@/lib/quiz-data';
 import { Answer } from '@/components/quiz/Quiz';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -51,7 +51,15 @@ export default function HistoryPage() {
 
   const { data: attempts, isLoading } = useCollection<QuizAttempt>(attemptsQuery);
   const [selectedAttempt, setSelectedAttempt] = useState<QuizAttempt | null>(null);
+  const [isDetailViewOpen, setDetailViewOpen] = useState(false);
   const [feedbackState, setFeedbackState] = useState<FeedbackState>({});
+
+  useEffect(() => {
+    if (!isLoading && attempts && attempts.length > 0) {
+      setSelectedAttempt(attempts[0]);
+      setDetailViewOpen(true);
+    }
+  }, [isLoading, attempts]);
 
   const handleDelete = (attemptId: string) => {
     if (!user || !firestore) return;
@@ -72,6 +80,13 @@ export default function HistoryPage() {
 
     setFeedbackState(prev => ({ ...prev, [answer.questionId]: { isLoading: false, feedback: feedbackResponse.feedback } }));
   };
+
+  const handleOpenChange = (isOpen: boolean) => {
+    setDetailViewOpen(isOpen);
+    if (!isOpen) {
+      setFeedbackState({});
+    }
+  }
 
   const WavyText = ({ text }: { text: string }) => (
     <h1 className="font-headline text-4xl sm:text-5xl font-bold text-primary wavy-text">
@@ -122,7 +137,7 @@ export default function HistoryPage() {
       <header className="text-center mb-8">
         <WavyText text="Quiz History" />
       </header>
-      <Dialog onOpenChange={() => setFeedbackState({})}>
+      <Dialog open={isDetailViewOpen} onOpenChange={handleOpenChange}>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {attempts.map(attempt => {
             const attemptDate = new Date(attempt.timestamp.seconds * 1000);
