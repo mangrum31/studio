@@ -3,7 +3,6 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 import TopNav from '@/components/TopNav';
-import InstallPWAButton from '@/components/InstallPWAButton';
 import Script from 'next/script';
 
 export const metadata: Metadata = {

@@ -37,7 +37,9 @@ const nextConfig: NextConfig = {
         new SWPrecacheWebpackPlugin({
           cacheId: 'quiz-box',
           filepath: './public/service-worker.js',
-          staticFileGlobs: ['./.next/static/**/*.js'],
+          staticFileGlobs: [
+            './.next/static/**/*',
+          ],
           stripPrefix: './.next',
           mergeStaticsConfig: true,
           minify: true,
@@ -47,7 +49,7 @@ const nextConfig: NextConfig = {
               urlPattern: /^https?.*/,
             },
           ],
-          // Specifically cache the root page
+          // Specifically cache the root page and other important pages
           dynamicUrlToDependencies: {
             '/': ['./.next/server/app/index.html'],
           },
