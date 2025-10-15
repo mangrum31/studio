@@ -88,14 +88,14 @@ export default function Home() {
           <Button 
             onClick={() => handleLanguageChange('en')} 
             variant={language === 'en' ? 'default' : 'outline'}
-            className={cn("transition-all", language === 'en' && "ring-2 ring-primary")}
+            className={cn("transition-all px-2", language === 'en' && "ring-2 ring-primary")}
           >
             English
           </Button>
           <Button 
             onClick={() => handleLanguageChange('bn')} 
             variant={language === 'bn' ? 'default' : 'outline'}
-            className={cn("transition-all", language === 'bn' && "ring-2 ring-primary")}
+            className={cn("transition-all px-2", language === 'bn' && "ring-2 ring-primary")}
           >
             বাংলা
           </Button>
