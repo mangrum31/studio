@@ -120,27 +120,16 @@ body {
     }
   }
 
-  .orbital-animation::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border-radius: 50%;
-    border-top: 4px solid hsl(var(--accent));
-    border-right: 4px solid hsl(var(--accent));
-    border-bottom: 4px solid transparent;
-    border-left: 4px solid transparent;
-    animation: orbit 4s linear infinite;
+  .come-and-back {
+    animation: come-and-back 3s ease-in-out infinite;
   }
 
-  @keyframes orbit {
-    from {
-      transform: rotate(0deg);
+  @keyframes come-and-back {
+    0%, 100% {
+      transform: translateX(-10px);
     }
-    to {
-      transform: rotate(360deg);
+    50% {
+      transform: translateX(10px);
     }
   }
 
