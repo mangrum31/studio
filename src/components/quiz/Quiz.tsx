@@ -1,7 +1,8 @@
+
 "use client";
 
 import { useState } from "react";
-import { quizQuestions, type QuizQuestion as QuizQuestionType } from "@/lib/quiz-data";
+import type { QuizQuestion as QuizQuestionType } from "@/lib/quiz-data";
 import { QuizQuestion } from "./QuizQuestion";
 import { QuizResults } from "./QuizResults";
 
@@ -11,7 +12,12 @@ interface Answer {
   isCorrect: boolean;
 }
 
-export function Quiz() {
+interface QuizProps {
+    questions: QuizQuestionType[];
+    language: 'en' | 'bn';
+}
+
+export function Quiz({ questions, language }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
@@ -24,7 +30,7 @@ export function Quiz() {
     setAnswers((prev) => [
       ...prev,
       {
-        questionId: quizQuestions[currentQuestionIndex].id,
+        questionId: questions[currentQuestionIndex].id,
         answer,
         isCorrect,
       },
@@ -32,7 +38,7 @@ export function Quiz() {
   };
 
   const handleNext = () => {
-    if (currentQuestionIndex < quizQuestions.length - 1) {
+    if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prev) => prev + 1);
     } else {
       setQuizOver(true);
@@ -50,8 +56,9 @@ export function Quiz() {
     return (
       <QuizResults
         score={score}
-        totalQuestions={quizQuestions.length}
+        totalQuestions={questions.length}
         onRestart={handleRestart}
+        language={language}
       />
     );
   }
@@ -59,12 +66,13 @@ export function Quiz() {
   return (
     <div className="space-y-8">
         <QuizQuestion
-          key={quizQuestions[currentQuestionIndex].id}
-          question={quizQuestions[currentQuestionIndex]}
+          key={questions[currentQuestionIndex].id}
+          question={questions[currentQuestionIndex]}
           questionNumber={currentQuestionIndex + 1}
-          totalQuestions={quizQuestions.length}
+          totalQuestions={questions.length}
           onAnswer={handleAnswer}
           onNext={handleNext}
+          language={language}
         />
     </div>
   );

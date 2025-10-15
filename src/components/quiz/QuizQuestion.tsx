@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -18,9 +19,10 @@ interface Props {
   totalQuestions: number;
   onAnswer: (isCorrect: boolean, answer: string) => void;
   onNext: () => void;
+  language: 'en' | 'bn';
 }
 
-export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswer, onNext }: Props) {
+export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswer, onNext, language }: Props) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
@@ -59,12 +61,19 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
     }
     return "text-muted-foreground";
   }
+  
+  const questionLabel = language === 'en' ? `Question ${questionNumber} of ${totalQuestions}` : `প্রশ্ন ${questionNumber} এর ${totalQuestions}`;
+  const nextButtonLabel = language === 'en' 
+    ? (questionNumber === totalQuestions ? "Finish Quiz" : "Next Question")
+    : (questionNumber === totalQuestions ? "কুইজ শেষ করুন" : "পরবর্তী প্রশ্ন");
+  const submitButtonLabel = language === 'en' ? "Submit Answer" : "উত্তর জমা দিন";
+
 
   return (
     <Card className="w-full shadow-lg transition-all duration-300">
       <CardHeader>
         <CardDescription>
-          Question {questionNumber} of {totalQuestions}
+          {questionLabel}
         </CardDescription>
         <CardTitle className="font-headline text-2xl">{question.question}</CardTitle>
         <Progress value={(questionNumber / totalQuestions) * 100} className="w-full mt-2" />
@@ -99,12 +108,12 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
           <>
             <Feedback feedback={feedback} isCorrect={isCorrect} isLoading={isLoading} />
             <Button onClick={onNext} className="w-full">
-                {questionNumber === totalQuestions ? "Finish Quiz" : "Next Question"} <ArrowRight className="ml-2"/>
+                {nextButtonLabel} <ArrowRight className="ml-2"/>
             </Button>
           </>
         ) : (
           <Button onClick={handleSubmit} disabled={!selectedOption} className="w-full">
-            Submit Answer
+            {submitButtonLabel}
           </Button>
         )}
       </CardFooter>
