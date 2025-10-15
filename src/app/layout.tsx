@@ -37,7 +37,6 @@ export default function RootLayout({
               </div>
             </div>
           </div>
-          <InstallPWAButton />
           <Toaster />
         </FirebaseClientProvider>
       </body>

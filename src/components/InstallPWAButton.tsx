@@ -50,11 +50,9 @@ export default function InstallPWAButton() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
-      <Button onClick={handleInstallClick}>
-        <Download className="mr-2 h-4 w-4" />
-        Download App
-      </Button>
-    </div>
+    <Button onClick={handleInstallClick} variant="outline">
+      <Download className="mr-2 h-4 w-4" />
+      Download App
+    </Button>
   );
 }

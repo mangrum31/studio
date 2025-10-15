@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/firebase';
 import { initiateAnonymousSignIn } from '@/firebase/non-blocking-login';
+import InstallPWAButton from '@/components/InstallPWAButton';
 
 type Language = 'en' | 'bn';
 export type Topic = 'all' | 'alphabet' | 'national_symbols' | 'geography' | 'literature_arts' | 'history' | 'culture_lifestyle' | 'sports';
@@ -73,7 +74,7 @@ export default function Home() {
       <h1 className="font-headline text-4xl sm:text-5xl font-bold text-primary wavy-text">
         {text.split('').map((char, index) => (
           <span key={index} style={{ '--i': index } as React.CSSProperties}>
-            {char === ' ' ? '\u00A0' : char}
+            {char === ' ' ? ' ' : char}
           </span>
         ))}
       </h1>
@@ -125,6 +126,9 @@ export default function Home() {
           <Button onClick={handleStartQuiz} size="lg" className="w-full max-w-xs">
               {language === 'en' ? 'Start Quiz' : 'কুইজ শুরু করুন'}
           </Button>
+          <div className="pt-4">
+             <InstallPWAButton />
+          </div>
       </div>
 
     </div>
