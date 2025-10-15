@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "Quiz": {
@@ -96,6 +97,13 @@
         "timestamp": {
           "type": "string",
           "format": "date-time"
+        },
+        "answers": {
+          "type": "array",
+          "description": "Array of answers given by the user.",
+          "items": {
+            "$ref": "#/entities/AttemptAnswer"
+          }
         }
       },
       "required": [
@@ -104,7 +112,8 @@
         "language",
         "score",
         "totalQuestions",
-        "timestamp"
+        "timestamp",
+        "answers"
       ]
     },
     "User": {
@@ -139,21 +148,25 @@
       "type": "object",
       "description": "Represents the answer given by a user for a specific question in a quiz attempt.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the attempt answer."
-        },
-        "quizAttemptId": {
-          "type": "string",
-          "description": "Reference to the QuizAttempt this answer belongs to. (Relationship: QuizAttempt 1:N AttemptAnswer)"
-        },
         "questionId": {
-          "type": "string",
-          "description": "Reference to the Question being answered. (Relationship: Question 1:N AttemptAnswer)"
-        },
-        "selectedAnswerIndex": {
           "type": "number",
-          "description": "The index of the answer option selected by the user."
+          "description": "Identifier for the question."
+        },
+        "questionText": {
+          "type": "string",
+          "description": "The text of the question."
+        },
+        "options": {
+            "type": "array",
+            "items": { "type": "object" }
+        },
+        "selectedAnswer": {
+          "type": "string",
+          "description": "The answer selected by the user."
+        },
+        "correctAnswer": {
+          "type": "string",
+          "description": "The correct answer for the question."
         },
         "isCorrect": {
           "type": "boolean",
@@ -161,10 +174,11 @@
         }
       },
       "required": [
-        "id",
-        "quizAttemptId",
         "questionId",
-        "selectedAnswerIndex",
+        "questionText",
+        "options",
+        "selectedAnswer",
+        "correctAnswer",
         "isCorrect"
       ]
     }

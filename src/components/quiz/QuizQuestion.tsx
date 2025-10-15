@@ -20,37 +20,53 @@ interface Props {
   totalQuestions: number;
   onAnswer: (isCorrect: boolean, answer: string) => void;
   onNext: () => void;
+  onFinalAnswer: (isCorrect: boolean, answer: string) => void;
   language: 'en' | 'bn';
 }
 
-export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswer, onNext, language }: Props) {
+export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswer, onNext, onFinalAnswer, language }: Props) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [feedback, setFeedback] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const isLastQuestion = questionNumber === totalQuestions;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedOption) return;
 
-    setIsLoading(true);
     setSubmitted(true);
     const correct = selectedOption === question.correctAnswer;
     setIsCorrect(correct);
-    onAnswer(correct, selectedOption);
-
-    const aiFeedback = await getAIfeedback({
-      question: question.question,
-      answer: selectedOption,
-      isCorrect: correct,
-      correctAnswer: question.correctAnswer,
-      topic: question.topic,
-    });
-
-    setFeedback(aiFeedback.feedback);
-    setIsLoading(false);
+    
+    if (isLastQuestion) {
+        // We call onFinalAnswer directly, no AI feedback here to speed up quiz completion
+        onFinalAnswer(correct, selectedOption);
+    } else {
+        onAnswer(correct, selectedOption);
+        setIsLoading(true);
+        const aiFeedback = await getAIfeedback({
+          question: question.question,
+          answer: selectedOption,
+          isCorrect: correct,
+          correctAnswer: question.correctAnswer,
+          topic: question.topic,
+        });
+        setFeedback(aiFeedback.feedback);
+        setIsLoading(false);
+    }
   };
+
+  const handleNextClick = () => {
+      if(isLastQuestion && submitted) {
+          // The onFinalAnswer would have already been called at this point
+          // No need to call onNext() as the parent will transition to QuizResults
+          return;
+      }
+      onNext();
+  }
 
   const getOptionClassName = (optionText: string) => {
     if (!submitted) return "";
@@ -65,8 +81,8 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
   
   const questionLabel = language === 'en' ? `Question ${questionNumber} of ${totalQuestions}` : `প্রশ্ন ${questionNumber} এর ${totalQuestions}`;
   const nextButtonLabel = language === 'en' 
-    ? (questionNumber === totalQuestions ? "Finish Quiz" : "Next Question")
-    : (questionNumber === totalQuestions ? "কুইজ শেষ করুন" : "পরবর্তী প্রশ্ন");
+    ? (isLastQuestion ? "Finish Quiz" : "Next Question")
+    : (isLastQuestion ? "কুইজ শেষ করুন" : "পরবর্তী প্রশ্ন");
   const submitButtonLabel = language === 'en' ? "Submit Answer" : "উত্তর জমা দিন";
 
 
@@ -119,7 +135,7 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
         {submitted ? (
           <>
             <Feedback feedback={feedback} isCorrect={isCorrect} isLoading={isLoading} />
-            <Button onClick={onNext} className="w-full">
+            <Button onClick={handleNextClick} className="w-full">
                 {nextButtonLabel} <ArrowRight className="ml-2"/>
             </Button>
           </>

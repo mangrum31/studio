@@ -12,9 +12,12 @@ import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
 import { collection } from "firebase/firestore";
 import type { Topic } from "@/app/page";
 
-interface Answer {
+export interface Answer {
   questionId: number;
-  answer: string;
+  questionText: string;
+  options: any[]; // Storing full options to redisplay
+  selectedAnswer: string;
+  correctAnswer: string;
   isCorrect: boolean;
 }
 
@@ -37,11 +40,15 @@ export function Quiz({ questions, language, onGoHome, topic }: QuizProps) {
     if (isCorrect) {
       setScore((prev) => prev + 1);
     }
+    const currentQuestion = questions[currentQuestionIndex];
     setAnswers((prev) => [
       ...prev,
       {
-        questionId: questions[currentQuestionIndex].id,
-        answer,
+        questionId: currentQuestion.id,
+        questionText: currentQuestion.question,
+        options: currentQuestion.options,
+        selectedAnswer: answer,
+        correctAnswer: currentQuestion.correctAnswer,
         isCorrect,
       },
     ]);
@@ -56,9 +63,10 @@ export function Quiz({ questions, language, onGoHome, topic }: QuizProps) {
           userId: user.uid,
           topic: topic,
           language: language,
-          score: score + (answers.find(a => a.questionId === questions[currentQuestionIndex].id)?.isCorrect ? 1 : 0),
+          score: score, // The score state is already updated
           totalQuestions: questions.length,
           timestamp: new Date(),
+          answers: answers,
         };
         const attemptsCol = collection(firestore, `users/${user.uid}/quizAttempts`);
         addDocumentNonBlocking(attemptsCol, attempt);
@@ -68,23 +76,47 @@ export function Quiz({ questions, language, onGoHome, topic }: QuizProps) {
       setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
-
-  const handleRestart = () => {
-    setCurrentQuestionIndex(0);
-    setScore(0);
-    setAnswers([]);
-    setQuizOver(false);
+  
+  const handleFinalAnswer = (isCorrect: boolean, answer: string) => {
+    const updatedScore = isCorrect ? score + 1 : score;
+    const currentQuestion = questions[currentQuestionIndex];
+    const finalAnswers = [
+      ...answers,
+      {
+        questionId: currentQuestion.id,
+        questionText: currentQuestion.question,
+        options: currentQuestion.options,
+        selectedAnswer: answer,
+        correctAnswer: currentQuestion.correctAnswer,
+        isCorrect,
+      },
+    ];
+  
+    if (user && firestore) {
+      const attempt = {
+        userId: user.uid,
+        topic: topic,
+        language: language,
+        score: updatedScore,
+        totalQuestions: questions.length,
+        timestamp: new Date(),
+        answers: finalAnswers,
+      };
+      const attemptsCol = collection(firestore, `users/${user.uid}/quizAttempts`);
+      addDocumentNonBlocking(attemptsCol, attempt);
+    }
+    setScore(updatedScore);
+    setAnswers(finalAnswers);
+    setQuizOver(true);
   };
 
-  if (quizOver) {
-    // Final score calculation needs to happen before rendering results
-    const finalScore = score;
 
+  if (quizOver) {
     return (
       <QuizResults
-        score={finalScore}
+        score={score}
         totalQuestions={questions.length}
-        onRestart={handleRestart}
+        onRestart={onGoHome} // Restarting now goes home to re-select topic
         onGoHome={onGoHome}
         language={language}
       />
@@ -118,6 +150,7 @@ export function Quiz({ questions, language, onGoHome, topic }: QuizProps) {
           totalQuestions={questions.length}
           onAnswer={handleAnswer}
           onNext={handleNext}
+          onFinalAnswer={handleFinalAnswer}
           language={language}
         />
     </div>
