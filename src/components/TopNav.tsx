@@ -18,12 +18,6 @@ export default function TopNav() {
             <Logo />
           </div>
           <div className="flex items-center gap-2">
-             <Link href="/history" passHref>
-                <Button variant={pathname === '/history' ? 'default' : 'ghost'}>
-                    <History className="mr-2 h-4 w-4" />
-                    History
-                </Button>
-            </Link>
           </div>
         </div>
       </div>
