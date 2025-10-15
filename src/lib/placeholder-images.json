@@ -17,6 +17,12 @@
       "description": "A colorfully painted rickshaw, a common mode of transport in Bangladesh",
       "imageUrl": "https://picsum.photos/seed/3/600/400",
       "imageHint": "rickshaw art"
+    },
+    {
+      "id": "author-image",
+      "description": "A picture of the author",
+      "imageUrl": "https://picsum.photos/seed/author/100/100",
+      "imageHint": "author portrait"
     }
   ]
 }
