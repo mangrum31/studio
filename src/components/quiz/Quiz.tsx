@@ -118,7 +118,6 @@ export function Quiz({ questions, language, onGoHome, topic }: QuizProps) {
         totalQuestions={questions.length}
         onRestart={onGoHome} // Restarting now goes home to re-select topic
         onGoHome={onGoHome}
-        language={language}
       />
     );
   }
@@ -129,7 +128,7 @@ export function Quiz({ questions, language, onGoHome, topic }: QuizProps) {
         <p>No questions available for this topic yet. Please select another one.</p>
         <Button onClick={onGoHome} className="mt-4">
             <Home className="mr-2 h-4 w-4" />
-            {language === 'en' ? 'Home' : 'হোম'}
+            Home
         </Button>
       </div>
     )
@@ -140,7 +139,7 @@ export function Quiz({ questions, language, onGoHome, topic }: QuizProps) {
         <div className="flex justify-end">
             <Button variant="outline" size="sm" onClick={onGoHome}>
                 <Home className="mr-2 h-4 w-4" />
-                {language === 'en' ? 'Home' : 'হোম'}
+                Home
             </Button>
         </div>
         <QuizQuestion

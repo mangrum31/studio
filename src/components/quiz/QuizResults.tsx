@@ -11,20 +11,19 @@ interface Props {
   totalQuestions: number;
   onRestart: () => void;
   onGoHome: () => void;
-  language: 'en' | 'bn';
 }
 
-export function QuizResults({ score, totalQuestions, onRestart, onGoHome, language }: Props) {
+export function QuizResults({ score, totalQuestions, onRestart, onGoHome }: Props) {
   const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
   const isSuccess = percentage >= 70;
 
-  const title = language === 'en' ? 'Quiz Completed!' : 'কুইজ সম্পন্ন!';
-  const description = language === 'en' ? "You've reached the end of the quiz." : 'আপনি কুইজের শেষে পৌঁছেছেন।';
-  const scoreLabel = language === 'en' ? 'Your Score:' : 'আপনার স্কোর:';
-  const successMessage = language === 'en' ? "Excellent work! You have a great knowledge of Bangladesh." : "চমৎকার কাজ! বাংলাদেশ সম্পর্কে আপনার দারুণ জ্ঞান রয়েছে।";
-  const encouragementMessage = language === 'en' ? "Good effort! Keep learning and try again to improve your score." : "ভালো প্রচেষ্টা! শিখতে থাকুন এবং আপনার স্কোর উন্নত করতে আবার চেষ্টা করুন।";
-  const tryAgainLabel = language === 'en' ? 'Try Again' : 'আবার চেষ্টা করুন';
-  const goHomeLabel = language === 'en' ? 'Go Home' : 'হোমে যান';
+  const title = 'Quiz Completed!';
+  const description = "You've reached the end of the quiz.";
+  const scoreLabel = 'Your Score:';
+  const successMessage = "Excellent work! You have a great knowledge of Bangladesh.";
+  const encouragementMessage = "Good effort! Keep learning and try again to improve your score.";
+  const tryAgainLabel = 'Try Again';
+  const goHomeLabel = 'Go Home';
 
   return (
     <Card className="w-full text-center shadow-lg relative overflow-hidden bg-card border-border">

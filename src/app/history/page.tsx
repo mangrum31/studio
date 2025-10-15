@@ -118,7 +118,7 @@ export default function HistoryPage() {
                     {attempt.score} / {attempt.totalQuestions}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    {attemptDate.toLocaleDateString(attempt.language === 'bn' ? 'bn-BD' : 'en-US', {
+                    {attemptDate.toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric',
