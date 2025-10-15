@@ -3,10 +3,12 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 import TopNav from '@/components/TopNav';
+import InstallPWAButton from '@/components/InstallPWAButton';
 
 export const metadata: Metadata = {
   title: 'Quiz Box',
   description: 'An engaging quiz app for everyone.',
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
@@ -20,6 +22,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
+        <meta name="theme-color" content="#a855f7" />
       </head>
       <body className="font-headline antialiased">
         <FirebaseClientProvider>
@@ -34,6 +37,7 @@ export default function RootLayout({
               </div>
             </div>
           </div>
+          <InstallPWAButton />
           <Toaster />
         </FirebaseClientProvider>
       </body>
