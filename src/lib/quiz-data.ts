@@ -131,6 +131,13 @@ export const quizQuestions: QuizData = {
         options: [{text: "Crow"}, {text: "Dove"}, {text: "Magpie-robin (Doyel)"}, {text: "Parrot"}],
         correctAnswer: "Magpie-robin (Doyel)",
         topic: "National Symbols"
+      },
+      {
+        id: 104,
+        question: "What is the national fish of Bangladesh?",
+        options: [{text: "Rui"}, {text: "Katla"}, {text: "Hilsa (Ilish)"}, {text: "Prawn"}],
+        correctAnswer: "Hilsa (Ilish)",
+        topic: "National Symbols"
       }
     ],
     geography: [
@@ -178,6 +185,27 @@ export const quizQuestions: QuizData = {
         correctAnswer: "Rabindranath Tagore",
         topic: "Literature & Arts"
       },
+      {
+        id: 142,
+        question: "The movement for which language took place in 1952?",
+        options: [{text: "English"}, {text: "Hindi"}, {text: "Bengali"}, {text: "Urdu"}],
+        correctAnswer: "Bengali",
+        topic: "Literature & Arts"
+      },
+      {
+        id: 143,
+        question: "What do we call February 21st?",
+        options: [{text: "Independence Day"}, {text: "Victory Day"}, {text: "Martyr's Day"}, {text: "New Year's Day"}],
+        correctAnswer: "Martyr's Day",
+        topic: "Literature & Arts"
+      },
+      {
+        id: 145,
+        question: "How many letters are in the Bengali alphabet?",
+        options: [{text: "40"}, {text: "50"}, {text: "30"}, {text: "60"}],
+        correctAnswer: "50",
+        topic: "Literature & Arts"
+      }
     ],
     history: [
       {
@@ -217,6 +245,167 @@ export const quizQuestions: QuizData = {
         correctAnswer: "A three-wheeled passenger cart",
         topic: "Culture & Lifestyle"
       },
+      {
+        id: 108,
+        question: "Which month does the Bengali year start from?",
+        options: [{text: "Boishakh"}, {text: "Jaishtha"}, {text: "Falgun"}, {text: "Chaitra"}],
+        correctAnswer: "Boishakh",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 110,
+        question: "What is the most popular vehicle in the rural areas of Bangladesh?",
+        options: [{text: "Car"}, {text: "Bus"}, {text: "Rickshaw"}, {text: "Train"}],
+        correctAnswer: "Rickshaw",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 112,
+        question: "What food is eaten on the morning of Pohela Boishakh?",
+        options: [{text: "Biryani"}, {text: "Panta Bhat and Hilsa fish"}, {text: "Khichuri"}, {text: "Paratha"}],
+        correctAnswer: "Panta Bhat and Hilsa fish",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 113,
+        question: "Which procession is brought out from Dhaka University's Fine Arts faculty on Pohela Boishakh morning?",
+        options: [{text: "Victory Procession"}, {text: "Mourning Procession"}, {text: "Mangal Shobhajatra"}, {text: "Book Fair Procession"}],
+        correctAnswer: "Mangal Shobhajatra",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 115,
+        question: "During which festival do we wear new clothes and receive 'Salami'?",
+        options: [{text: "Pohela Boishakh"}, {text: "Durga Puja"}, {text: "Eid"}, {text: "Christmas"}],
+        correctAnswer: "Eid",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 116,
+        question: "What is the biggest festival of the Hindu community?",
+        options: [{text: "Holi"}, {text: "Diwali"}, {text: "Durga Puja"}, {text: "Saraswati Puja"}],
+        correctAnswer: "Durga Puja",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 117,
+        question: "In which month is the book fair held?",
+        options: [{text: "January"}, {text: "February"}, {text: "March"}, {text: "April"}],
+        correctAnswer: "February",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 122,
+        question: "What is the traditional dress for Bangladeshi women?",
+        options: [{text: "Sari"}, {text: "Gown"}, {text: "Skirt"}, {text: "Jeans"}],
+        correctAnswer: "Sari",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 123,
+        question: "What traditional attire do boys usually wear to celebrate Pohela Boishakh?",
+        options: [{text: "Shirt-Pant"}, {text: "Panjabi"}, {text: "Suit"}, {text: "T-shirt"}],
+        correctAnswer: "Panjabi",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 125,
+        question: "What is 'Nakshi Kantha' made from?",
+        options: [{text: "New clothes"}, {text: "Sewing old clothes"}, {text: "Wool"}, {text: "Silk"}],
+        correctAnswer: "Sewing old clothes",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 126,
+        question: "Which sari from Bangladesh is world-famous?",
+        options: [{text: "Tant Sari"}, {text: "Silk Sari"}, {text: "Jamdani Sari"}, {text: "Muslin Sari"}],
+        correctAnswer: "Jamdani Sari",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 130,
+        question: "What is the famous place for Jamdani sarees?",
+        options: [{text: "Dhaka"}, {text: "Sonargaon, Narayanganj"}, {text: "Comilla"}, {text: "Tangail"}],
+        correctAnswer: "Sonargaon, Narayanganj",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 131,
+        question: "What is the staple food of Bengalis?",
+        options: [{text: "Bread and meat"}, {text: "Rice and fish"}, {text: "Noodles"}, {text: "Pizza"}],
+        correctAnswer: "Rice and fish",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 132,
+        question: "Which fruit is called the king of fruits?",
+        options: [{text: "Jackfruit"}, {text: "Mango"}, {text: "Litchi"}, {text: "Guava"}],
+        correctAnswer: "Mango",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 134,
+        question: "What is a sweet dish made from rice called?",
+        options: [{text: "Halwa"}, {text: "Pitha or Payesh"}, {text: "Jalebi"}, {text: "Laddu"}],
+        correctAnswer: "Pitha or Payesh",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 136,
+        question: "Name a type of pitha that is made during winter.",
+        options: [{text: "Puli Pitha"}, {text: "Bhapa Pitha"}, {text: "Nokshi Pitha"}, {text: "Malpua"}],
+        correctAnswer: "Bhapa Pitha",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 137,
+        question: "What is a round, syrup-filled sweet found in sweet shops?",
+        options: [{text: "Sandesh"}, {text: "Rasgulla"}, {text: "Kalojam"}, {text: "Barfi"}],
+        correctAnswer: "Rasgulla",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 151,
+        question: "Name a famous folk singer of Bangladesh.",
+        options: [{text: "James"}, {text: "Abbasuddin Ahmed"}, {text: "Ayub Bachchu"}, {text: "Runa Laila"}],
+        correctAnswer: "Abbasuddin Ahmed",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 153,
+        question: "Who is a famous singer of Baul songs?",
+        options: [{text: "Rabindranath Tagore"}, {text: "Kazi Nazrul Islam"}, {text: "Lalon Shah"}, {text: "Hason Raja"}],
+        correctAnswer: "Lalon Shah",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 158,
+        question: "Which one-stringed musical instrument do Baul artists play?",
+        options: [{text: "Guitar"}, {text: "Sitar"}, {text: "Ektara"}, {text: "Dotara"}],
+        correctAnswer: "Ektara",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 161,
+        question: "What is the main occupation of the village people?",
+        options: [{text: "Business"}, {text: "Agriculture"}, {text: "Fishing"}, {text: "Pottery"}],
+        correctAnswer: "Agriculture",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 171,
+        question: "What should we do when we see elders?",
+        options: [{text: "Ignore them"}, {text: "Greet them (Salam/Namaskar)"}, {text: "Run away"}, {text: "Be silent"}],
+        correctAnswer: "Greet them (Salam/Namaskar)",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 181,
+        question: "Where is the Folk Art and Craft Museum of Bangladesh located?",
+        options: [{text: "Dhaka"}, {text: "Sonargaon"}, {text: "Comilla"}, {text: "Rajshahi"}],
+        correctAnswer: "Sonargaon",
+        topic: "Culture & Lifestyle"
+      }
     ],
     sports: [
       {
@@ -582,6 +771,13 @@ export const quizQuestions: QuizData = {
         options: [{text: "কাক"}, {text: "কবুতর"}, {text: "দোয়েল"}, {text: "টিয়া"}],
         correctAnswer: "দোয়েল",
         topic: "জাতীয় প্রতীক"
+      },
+      {
+        id: 104,
+        question: "বাংলাদেশের জাতীয় মাছের নাম কী?",
+        options: [{text: "রুই"}, {text: "কাতলা"}, {text: "ইলিশ"}, {text: "চিংড়ি"}],
+        correctAnswer: "ইলিশ",
+        topic: "জাতীয় প্রতীক"
       }
     ],
     geography: [
@@ -629,6 +825,27 @@ export const quizQuestions: QuizData = {
         correctAnswer: "রবীন্দ্রনাথ ঠাকুর",
         topic: "সাহিত্য ও শিল্প"
       },
+      {
+        id: 142,
+        question: "বাংলা ভাষার জন্য কবে আন্দোলন হয়েছিল?",
+        options: [{text: "১৯৪৭"}, {text: "১৯৫২"}, {text: "১৯৭১"}, {text: "১৯ Fév"}],
+        correctAnswer: "১৯৫২",
+        topic: "সাহিত্য ও শিল্প"
+      },
+      {
+        id: 143,
+        question: "২১ ফেব্রুয়ারিকে আমরা আর কী নামে ডাকি?",
+        options: [{text: "স্বাধীনতা দিবস"}, {text: "বিজয় দিবস"}, {text: "শহীদ দিবস"}, {text: "নববর্ষ"}],
+        correctAnswer: "শহীদ দিবস",
+        topic: "সাহিত্য ও শিল্প"
+      },
+      {
+        id: 145,
+        question: "বাংলা বর্ণমালায় মোট কয়টি বর্ণ আছে?",
+        options: [{text: "৪০টি"}, {text: "৫০টি"}, {text: "৩০টি"}, {text: "৬০টি"}],
+        correctAnswer: "৫০টি",
+        topic: "সাহিত্য ও শিল্প"
+      }
     ],
     history: [
       {
@@ -668,6 +885,167 @@ export const quizQuestions: QuizData = {
         correctAnswer: "একটি তিন চাকার যাত্রীবাহী গাড়ি",
         topic: "সংস্কৃতি ও জীবনধারা"
       },
+      {
+        id: 108,
+        question: "কোন মাস থেকে বাংলা বছর শুরু হয়?",
+        options: [{text: "বৈশাখ"}, {text: "জ্যৈষ্ঠ"}, {text: "ফাল্গুন"}, {text: "চৈত্র"}],
+        correctAnswer: "বৈশাখ",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 110,
+        question: "বাংলাদেশের গ্রামীণ অঞ্চলের সবচেয়ে জনপ্রিয় যান কোনটি?",
+        options: [{text: "গাড়ি"}, {text: "বাস"}, {text: "রিকশা"}, {text: "ট্রেন"}],
+        correctAnswer: "রিকশা",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 112,
+        question: "পহেলা বৈশাখে সকালে কী খাবার খাওয়া হয়?",
+        options: [{text: "বিরিয়ানি"}, {text: "পান্তা ভাত ও ইলিশ মাছ"}, {text: "খিচুড়ি"}, {text: "পরোটা"}],
+        correctAnswer: "পান্তা ভাত ও ইলিশ মাছ",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 113,
+        question: "পহেলা বৈশাখের সকালে ঢাকা বিশ্ববিদ্যালয়ের চারুকলা থেকে কোন শোভাযাত্রা বের হয়?",
+        options: [{text: "বিজয় মিছিল"}, {text: "শোক মিছিল"}, {text: "মঙ্গল শোভাযাত্রা"}, {text: "বইমেলা মিছিল"}],
+        correctAnswer: "মঙ্গল শোভাযাত্রা",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 115,
+        question: "কোন উৎসবের সময় আমরা নতুন জামা পরি এবং সালামী পাই?",
+        options: [{text: "পহেলা বৈশাখ"}, {text: "দুর্গাপূজা"}, {text: "ঈদ"}, {text: "বড়দিন"}],
+        correctAnswer: "ঈদ",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 116,
+        question: "হিন্দু ধর্মাবলম্বীদের সবচেয়ে বড় উৎসব কোনটি?",
+        options: [{text: "হোলি"}, {text: "দীপাবলি"}, {text: "দুর্গাপূজা"}, {text: "সরস্বতী পূজা"}],
+        correctAnswer: "দুর্গাপূজা",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 117,
+        question: "কোন মাসে বইমেলা অনুষ্ঠিত হয়?",
+        options: [{text: "জানুয়ারি"}, {text: "ফেব্রুয়ারি"}, {text: "মার্চ"}, {text: "এপ্রিল"}],
+        correctAnswer: "ফেব্রুয়ারি",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 122,
+        question: "বাংলাদেশের মেয়েদের ঐতিহ্যবাহী পোশাক কোনটি?",
+        options: [{text: "শাড়ি"}, {text: "গাউন"}, {text: "স্কার্ট"}, {text: "জিন্স"}],
+        correctAnswer: "শাড়ি",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 123,
+        question: "ছেলেরা সাধারণত কোন ঐতিহ্যবাহী পোশাকে পহেলা বৈশাখ পালন করে?",
+        options: [{text: "শার্ট-প্যান্ট"}, {text: "পাঞ্জাবি"}, {text: "স্যুট"}, {text: "টি-শার্ট"}],
+        correctAnswer: "পাঞ্জাবি",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 125,
+        question: "নকশি কাঁথা কী দিয়ে তৈরি হয়?",
+        options: [{text: "নতুন কাপড়"}, {text: "পুরানো কাপড় সেলাই করে"}, {text: "উল"}, {text: "সিল্ক"}],
+        correctAnswer: "পুরানো কাপড় সেলাই করে",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 126,
+        question: "বাংলাদেশের কোন শাড়ি বিশ্ব বিখ্যাত?",
+        options: [{text: "তাঁত শাড়ি"}, {text: "সিল্ক শাড়ি"}, {text: "জামদানি শাড়ি"}, {text: "মসলিন শাড়ি"}],
+        correctAnswer: "জামদানি শাড়ি",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 130,
+        question: "জামদানি শাড়ির জন্য বিখ্যাত জায়গার নাম কী?",
+        options: [{text: "ঢাকা"}, {text: "নারায়ণগঞ্জের সোনারগাঁও"}, {text: "কুমিল্লা"}, {text: "টাঙ্গাইল"}],
+        correctAnswer: "নারায়ণগঞ্জের সোনারগাঁও",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 131,
+        question: "বাঙালির প্রধান খাদ্য কী?",
+        options: [{text: "রুটি ও মাংস"}, {text: "ভাত ও মাছ"}, {text: "নুডলস"}, {text: "পিজা"}],
+        correctAnswer: "ভাত ও মাছ",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 132,
+        question: "কোন ফলকে ফলের রাজা বলা হয়?",
+        options: [{text: "কাঁঠাল"}, {text: "আম"}, {text: "লিচু"}, {text: "পেয়ারা"}],
+        correctAnswer: "আম",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 134,
+        question: "চাল থেকে তৈরি একটি মিষ্টি খাবারের নাম বলো।",
+        options: [{text: "হালুয়া"}, {text: "পায়েস বা পিঠা"}, {text: "জিলাপি"}, {text: "লাড্ডু"}],
+        correctAnswer: "পায়েস বা পিঠা",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 136,
+        question: "শীতকালে বানানো হয় এমন একটি পিঠার নাম বলো।",
+        options: [{text: "পুলি পিঠা"}, {text: "ভাপা পিঠা"}, {text: "নকশি পিঠা"}, {text: "মালপোয়া"}],
+        correctAnswer: "ভাপা পিঠা",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 137,
+        question: "মিষ্টির দোকানে গোল, রসে ভরা কোন মিষ্টি পাওয়া যায়?",
+        options: [{text: "সন্দেশ"}, {text: "রসগোল্লা"}, {text: "কালোজাম"}, {text: "বরফি"}],
+        correctAnswer: "রসগোল্লা",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 151,
+        question: "বাংলাদেশের একজন জনপ্রিয় লোকগানের শিল্পীর নাম বলো।",
+        options: [{text: "জেমস"}, {text: "আব্বাসউদ্দিন আহমদ"}, {text: "আইয়ুব বাচ্চু"}, {text: "রুনা লায়লা"}],
+        correctAnswer: "আব্বাসউদ্দিন আহমদ",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 153,
+        question: "বাউল গানের একজন বিখ্যাত গায়কের নাম কী?",
+        options: [{text: "রবীন্দ্রনাথ ঠাকুর"}, {text: "কাজী নজরুল ইসলাম"}, {text: "লালন সাঁই"}, {text: "হাসন রাজা"}],
+        correctAnswer: "লালন সাঁই",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 158,
+        question: "কোন শিল্পীরা একটি তারের বাদ্যযন্ত্র একতারা বাজায়?",
+        options: [{text: "গিটার"}, {text: "সেতার"}, {text: "একতারা"}, {text: "দোতারা"}],
+        correctAnswer: "একতারা",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 161,
+        question: "গ্রামের মানুষ প্রধানত কী কাজ করে জীবিকা নির্বাহ করে?",
+        options: [{text: "ব্যবসা"}, {text: "কৃষিকাজ"}, {text: "মাছ ধরা"}, {text: "কুমোরের কাজ"}],
+        correctAnswer: "কৃষিকাজ",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 171,
+        question: "বড়দের দেখলে আমাদের কী করতে হয়?",
+        options: [{text: "এড়িয়ে চলা"}, {text: "সালাম / নমস্কার করতে হয়"}, {text: "দৌড়ে পালানো"}, {text: "চুপ থাকা"}],
+        correctAnswer: "সালাম / নমস্কার করতে হয়",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 181,
+        question: "বাংলাদেশের লোকশিল্প জাদুঘর কোথায় অবস্থিত?",
+        options: [{text: "ঢাকা"}, {text: "সোনারগাঁও"}, {text: "কুমিল্লা"}, {text: "রাজশাহী"}],
+        correctAnswer: "সোনারগাঁও",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      }
     ],
     sports: [
       {
