@@ -31,20 +31,26 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config, { dev, isServer, buildId, defaultLoaders }) => {
     if (!dev && !isServer) {
       config.plugins.push(
         new SWPrecacheWebpackPlugin({
           cacheId: 'quiz-box',
-          filename: 'service-worker.js',
-          staticFileGlobs: ['public/**/*'],
+          filepath: './public/service-worker.js',
+          staticFileGlobs: ['./.next/static/**/*.js'],
+          stripPrefix: './.next',
+          mergeStaticsConfig: true,
           minify: true,
           runtimeCaching: [
             {
               handler: 'networkFirst',
-              urlPattern: /^https?:\/\/.*/,
+              urlPattern: /^https?.*/,
             },
           ],
+          // Specifically cache the root page
+          dynamicUrlToDependencies: {
+            '/': ['./.next/server/app/index.html'],
+          },
         })
       );
     }
