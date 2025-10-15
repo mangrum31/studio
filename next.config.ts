@@ -1,5 +1,10 @@
 import type {NextConfig} from 'next';
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+});
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -31,33 +36,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  webpack: (config, { dev, isServer, buildId, defaultLoaders }) => {
-    if (!dev && !isServer) {
-      config.plugins.push(
-        new SWPrecacheWebpackPlugin({
-          cacheId: 'quiz-box',
-          filepath: './public/service-worker.js',
-          staticFileGlobs: [
-            './.next/static/**/*',
-          ],
-          stripPrefix: './.next',
-          mergeStaticsConfig: true,
-          minify: true,
-          runtimeCaching: [
-            {
-              handler: 'networkFirst',
-              urlPattern: /^https?.*/,
-            },
-          ],
-          // Specifically cache the root page and other important pages
-          dynamicUrlToDependencies: {
-            '/': ['./.next/server/app/index.html'],
-          },
-        })
-      );
-    }
-    return config;
-  },
 };
 
-export default nextConfig;
+export default withPWA(nextConfig);
