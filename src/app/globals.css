@@ -143,4 +143,19 @@ body {
       transform: rotate(360deg);
     }
   }
+
+  .fading-q {
+    animation: fade-in-out 3s infinite;
+  }
+
+  @keyframes fade-in-out {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
 }

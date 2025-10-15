@@ -6,7 +6,7 @@ import { collection, query, orderBy, doc } from 'firebase/firestore';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { Trophy, Trash2, Eye, CheckCircle, XCircle } from 'lucide-react';
+import { Trophy, Trash2, Eye, CheckCircle, XCircle, Sparkles } from 'lucide-react';
 import { quizTopics } from '@/lib/quiz-data';
 import { Answer } from '@/components/quiz/Quiz';
 import { useState } from 'react';
@@ -15,6 +15,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
+import { getAIfeedback } from '@/app/actions';
 
 interface QuizAttempt {
   id: string;
@@ -27,6 +28,13 @@ interface QuizAttempt {
     nanoseconds: number;
   };
   answers: Answer[];
+}
+
+interface FeedbackState {
+  [questionId: number]: {
+    isLoading: boolean;
+    feedback: string | null;
+  };
 }
 
 export default function HistoryPage() {
@@ -43,11 +51,26 @@ export default function HistoryPage() {
 
   const { data: attempts, isLoading } = useCollection<QuizAttempt>(attemptsQuery);
   const [selectedAttempt, setSelectedAttempt] = useState<QuizAttempt | null>(null);
+  const [feedbackState, setFeedbackState] = useState<FeedbackState>({});
 
   const handleDelete = (attemptId: string) => {
     if (!user || !firestore) return;
     const docRef = doc(firestore, `users/${user.uid}/quizAttempts`, attemptId);
     deleteDocumentNonBlocking(docRef);
+  };
+  
+  const handleGenerateFeedback = async (answer: Answer) => {
+    setFeedbackState(prev => ({ ...prev, [answer.questionId]: { isLoading: true, feedback: null } }));
+    
+    const feedbackResponse = await getAIfeedback({
+      question: answer.questionText,
+      answer: answer.selectedAnswer,
+      isCorrect: answer.isCorrect,
+      correctAnswer: answer.correctAnswer,
+      topic: selectedAttempt?.topic || 'general',
+    });
+
+    setFeedbackState(prev => ({ ...prev, [answer.questionId]: { isLoading: false, feedback: feedbackResponse.feedback } }));
   };
 
   const WavyText = ({ text }: { text: string }) => (
@@ -99,7 +122,7 @@ export default function HistoryPage() {
       <header className="text-center mb-8">
         <WavyText text="Quiz History" />
       </header>
-      <Dialog>
+      <Dialog onOpenChange={() => setFeedbackState({})}>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {attempts.map(attempt => {
             const attemptDate = new Date(attempt.timestamp.seconds * 1000);
@@ -169,7 +192,7 @@ export default function HistoryPage() {
                       <div className={cn("flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center", answer.isCorrect ? "bg-green-500" : "bg-destructive")}>
                         {answer.isCorrect ? <CheckCircle className="w-4 h-4 text-white" /> : <XCircle className="w-4 h-4 text-white" />}
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 space-y-1">
                         <p className="font-semibold">{index + 1}. {answer.questionText}</p>
                         <p className={cn("text-sm", answer.isCorrect ? "text-green-500" : "text-destructive")}>
                           Your answer: {answer.selectedAnswer}
@@ -178,6 +201,23 @@ export default function HistoryPage() {
                           <p className="text-sm text-green-500">
                             Correct answer: {answer.correctAnswer}
                           </p>
+                        )}
+
+                        {!answer.isCorrect && (
+                          <div className='mt-2'>
+                            {feedbackState[answer.questionId]?.isLoading ? (
+                              <Skeleton className="h-10 w-full" />
+                            ) : feedbackState[answer.questionId]?.feedback ? (
+                              <p className="text-sm bg-accent/50 p-2 rounded-md border border-accent">
+                                {feedbackState[answer.questionId]?.feedback}
+                              </p>
+                            ) : (
+                              <Button size="sm" variant="outline" onClick={() => handleGenerateFeedback(answer)}>
+                                <Sparkles className="mr-2 h-4 w-4" />
+                                Get Explanation
+                              </Button>
+                            )}
+                          </div>
                         )}
                       </div>
                     </div>
