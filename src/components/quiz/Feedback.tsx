@@ -27,15 +27,15 @@ export function Feedback({ feedback, isCorrect, isLoading }: Props) {
   return (
     <Alert
       className={cn(
-        isCorrect ? "bg-accent/20 border-accent text-accent-foreground" : "bg-destructive/10 border-destructive/50"
+        isCorrect ? "bg-green-500/10 border-green-500/50 text-green-500" : "bg-destructive/10 border-destructive/50"
       )}
     >
       {isCorrect ? (
-        <PartyPopper className={cn("h-5 w-5", isCorrect ? "text-accent" : "text-destructive")} />
+        <PartyPopper className={cn("h-5 w-5", "text-green-500")} />
       ) : (
-        <Lightbulb className={cn("h-5 w-5", isCorrect ? "text-accent" : "text-destructive")} />
+        <Lightbulb className={cn("h-5 w-5", "text-destructive")} />
       )}
-      <AlertTitle className="font-headline text-lg">
+      <AlertTitle className={cn("font-headline text-lg", isCorrect ? 'text-green-400' : 'text-destructive')}>
         {isCorrect ? "That's Correct!" : "Not Quite..."}
       </AlertTitle>
       <AlertDescription className="text-foreground/80">{feedback}</AlertDescription>

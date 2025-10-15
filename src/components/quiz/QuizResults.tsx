@@ -27,21 +27,21 @@ export function QuizResults({ score, totalQuestions, onRestart, onGoHome, langua
   const goHomeLabel = language === 'en' ? 'Go Home' : 'হোমে যান';
 
   return (
-    <Card className="w-full text-center shadow-lg relative overflow-hidden">
+    <Card className="w-full text-center shadow-lg relative overflow-hidden bg-card border-border">
       {isSuccess && <Confetti />}
       <CardHeader>
         <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit">
           <Award className="h-12 w-12 text-primary" />
         </div>
-        <CardTitle className="font-headline text-3xl mt-4">{title}</CardTitle>
+        <CardTitle className="font-headline text-3xl mt-4 text-card-foreground">{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <p className="text-lg">{scoreLabel}</p>
+        <p className="text-lg text-card-foreground">{scoreLabel}</p>
         <p className="font-bold text-5xl text-primary font-headline">
           {score} / {totalQuestions}
         </p>
-        <p className="text-2xl font-headline" style={{color: "hsl(var(--accent))"}}>
+        <p className="text-2xl font-headline text-green-500">
             ({percentage}%)
         </p>
         <p className="text-muted-foreground pt-4">

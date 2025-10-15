@@ -55,10 +55,10 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
   const getOptionClassName = (optionText: string) => {
     if (!submitted) return "";
     if (optionText === question.correctAnswer) {
-        return "text-green-700 dark:text-green-400 font-bold";
+        return "text-green-400 font-bold";
     }
     if (optionText === selectedOption && !isCorrect) {
-        return "text-red-700 dark:text-red-400";
+        return "text-red-400";
     }
     return "text-muted-foreground";
   }
@@ -71,12 +71,12 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
 
 
   return (
-    <Card className="w-full shadow-lg transition-all duration-300">
+    <Card className="w-full shadow-lg transition-all duration-300 bg-card border-border">
       <CardHeader>
         <CardDescription>
           {questionLabel}
         </CardDescription>
-        <CardTitle className="font-headline text-2xl">{question.question}</CardTitle>
+        <CardTitle className="font-headline text-2xl text-card-foreground">{question.question}</CardTitle>
         <Progress value={(questionNumber / totalQuestions) * 100} className="w-full mt-2" />
       </CardHeader>
       <CardContent>
@@ -93,7 +93,7 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
                 htmlFor={option.text}
                 className={cn("flex flex-col items-center justify-center space-y-2 p-4 rounded-lg border transition-all cursor-pointer hover:bg-secondary/50", 
                     selectedOption === option.text && !submitted && "border-primary",
-                    submitted && option.text === question.correctAnswer && "border-accent bg-accent/20",
+                    submitted && option.text === question.correctAnswer && "border-green-500 bg-green-500/20",
                     submitted && option.text === selectedOption && !isCorrect && "border-destructive bg-destructive/10"
                 )}
               >

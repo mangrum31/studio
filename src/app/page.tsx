@@ -47,7 +47,7 @@ export default function Home() {
 
   if (quizStarted) {
     return (
-      <main className="flex min-h-screen flex-col items-center p-4 sm:p-8 md:p-12">
+      <main className="flex min-h-screen flex-col items-center p-4 sm:p-8 md:p-12 bg-background">
         <div className="w-full max-w-4xl">
            <Quiz questions={questions} language={language} onGoHome={handleGoHome} />
         </div>
@@ -56,7 +56,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 sm:p-8 md:p-12">
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 sm:p-8 md:p-12 bg-background">
       <div className="w-full max-w-2xl">
         <header className="flex flex-col items-center text-center mb-8">
           <div className='flex items-center justify-center'>
