@@ -5,6 +5,8 @@ import { useState } from "react";
 import type { QuizQuestion as QuizQuestionType } from "@/lib/quiz-data";
 import { QuizQuestion } from "./QuizQuestion";
 import { QuizResults } from "./QuizResults";
+import { Button } from "../ui/button";
+import { Home } from "lucide-react";
 
 interface Answer {
   questionId: number;
@@ -15,9 +17,10 @@ interface Answer {
 interface QuizProps {
     questions: QuizQuestionType[];
     language: 'en' | 'bn';
+    onGoHome: () => void;
 }
 
-export function Quiz({ questions, language }: QuizProps) {
+export function Quiz({ questions, language, onGoHome }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
@@ -58,6 +61,7 @@ export function Quiz({ questions, language }: QuizProps) {
         score={score}
         totalQuestions={questions.length}
         onRestart={handleRestart}
+        onGoHome={onGoHome}
         language={language}
       />
     );
@@ -65,6 +69,12 @@ export function Quiz({ questions, language }: QuizProps) {
 
   return (
     <div className="space-y-8">
+        <div className="flex justify-end">
+            <Button variant="outline" size="sm" onClick={onGoHome}>
+                <Home className="mr-2 h-4 w-4" />
+                {language === 'en' ? 'Home' : 'হোম'}
+            </Button>
+        </div>
         <QuizQuestion
           key={questions[currentQuestionIndex].id}
           question={questions[currentQuestionIndex]}

@@ -2,39 +2,70 @@
 "use client";
 
 import Image from 'next/image';
-import { Flower2 } from 'lucide-react';
 import { Quiz } from '@/components/quiz/Quiz';
 import placeholderImages from '@/lib/placeholder-images.json';
-import { useState } from 'react';
-import { quizQuestions, QuizQuestion as QuizQuestionType } from '@/lib/quiz-data';
+import { useState, useMemo } from 'react';
+import { quizQuestions, quizTopics, QuizQuestion as QuizQuestionType } from '@/lib/quiz-data';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from '@/components/ui/label';
 
 type Language = 'en' | 'bn';
+type Topic = 'all' | 'national_symbols' | 'geography' | 'literature_arts' | 'history';
 
 export default function Home() {
   const headerImage = placeholderImages.placeholderImages.find(p => p.id === "shapla-flower");
   const [language, setLanguage] = useState<Language>('en');
-  const [questions, setQuestions] = useState<QuizQuestionType[]>(quizQuestions.en);
-  const [title, setTitle] = useState('Bangladesh Kids Quiz');
+  const [selectedTopic, setSelectedTopic] = useState<Topic>('all');
+  const [quizStarted, setQuizStarted] = useState(false);
 
+  const title = useMemo(() => language === 'en' ? 'Bangladesh Kids Quiz' : 'বাংলাদেশ কিডস কুইজ', [language]);
+  const topics = useMemo(() => Object.keys(quizTopics), []);
+
+  const questions = useMemo(() => {
+    const questionsByLang = quizQuestions[language];
+    if (selectedTopic === 'all') {
+      return Object.values(questionsByLang).flat();
+    }
+    return questionsByLang[selectedTopic] || [];
+  }, [language, selectedTopic]);
+  
   const handleLanguageChange = (lang: Language) => {
     setLanguage(lang);
-    setQuestions(quizQuestions[lang]);
-    setTitle(lang === 'en' ? 'Bangladesh Kids Quiz' : 'বাংলাদেশ কিডস কুইজ');
   };
 
+  const handleStartQuiz = () => {
+    if (questions.length > 0) {
+      setQuizStarted(true);
+    }
+  };
+
+  const handleGoHome = () => {
+    setQuizStarted(false);
+  }
+
+  if (quizStarted) {
+    return (
+      <main className="flex min-h-screen flex-col items-center p-4 sm:p-8 md:p-12">
+        <div className="w-full max-w-2xl">
+           <Quiz questions={questions} language={language} onGoHome={handleGoHome} />
+        </div>
+      </main>
+    )
+  }
+
   return (
-    <main className="flex min-h-screen flex-col items-center p-4 sm:p-8 md:p-12">
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 sm:p-8 md:p-12">
       <div className="w-full max-w-2xl">
-        <header className="flex flex-col sm:flex-row items-center justify-between mb-8 text-center sm:text-left">
+        <header className="flex flex-col items-center text-center mb-8">
           <div className='flex items-center justify-center'>
             {headerImage && (
               <Image 
                 src={headerImage.imageUrl}
                 alt={headerImage.description}
-                width={60}
-                height={60}
+                width={80}
+                height={80}
                 className="mr-4 rounded-full"
                 data-ai-hint={headerImage.imageHint}
               />
@@ -43,7 +74,7 @@ export default function Home() {
               {title}
             </h1>
           </div>
-          <div className="flex space-x-2 mt-4 sm:mt-0">
+          <div className="flex space-x-2 mt-6">
             <Button 
               onClick={() => handleLanguageChange('en')} 
               variant={language === 'en' ? 'default' : 'outline'}
@@ -60,7 +91,32 @@ export default function Home() {
             </Button>
           </div>
         </header>
-        <Quiz questions={questions} language={language}/>
+        
+        <div className="bg-card p-8 rounded-lg shadow-lg flex flex-col items-center space-y-6">
+            <h2 className="text-2xl font-headline text-card-foreground">{language === 'en' ? 'Choose a Topic' : 'একটি বিষয় নির্বাচন করুন'}</h2>
+            <div className="w-full max-w-xs">
+                <Label htmlFor="topic-select" className="sr-only">
+                    {language === 'en' ? 'Topic' : 'বিষয়'}
+                </Label>
+                <Select value={selectedTopic} onValueChange={(value) => setSelectedTopic(value as Topic)}>
+                    <SelectTrigger id="topic-select" className="w-full">
+                        <SelectValue placeholder={language === 'en' ? "Select a topic" : "বিষয় নির্বাচন"} />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="all">{language === 'en' ? 'All Topics' : 'সব বিষয়'}</SelectItem>
+                        {topics.map(topicKey => (
+                            <SelectItem key={topicKey} value={topicKey}>
+                                {quizTopics[topicKey as keyof typeof quizTopics][language]}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+            </div>
+            <Button onClick={handleStartQuiz} size="lg" className="w-full max-w-xs">
+                {language === 'en' ? 'Start Quiz' : 'কুইজ শুরু করুন'}
+            </Button>
+        </div>
+
       </div>
     </main>
   );
