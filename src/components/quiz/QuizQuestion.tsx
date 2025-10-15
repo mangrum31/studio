@@ -115,7 +115,7 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
               >
                 <RadioGroupItem value={option.text} id={option.text} className="sr-only" />
                 {option.imageUrl ? (
-                    <div className="relative w-32 h-32 mb-2">
+                    <div className="relative w-40 h-40 mb-2">
                         <Image 
                             src={option.imageUrl}
                             alt={option.text}

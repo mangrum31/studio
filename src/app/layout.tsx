@@ -29,7 +29,6 @@ export default function RootLayout({
           </main>
           <div className="fixed bottom-4 left-4 z-50">
             <div className="relative w-16 h-16">
-              <div className="absolute inset-0 orbital-animation opacity-50" />
               <div className="fading-q w-full h-full bg-primary/80 rounded-full flex items-center justify-center text-primary-foreground font-bold text-2xl shadow-lg">
                 Q
               </div>
