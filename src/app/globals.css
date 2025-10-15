@@ -119,4 +119,28 @@ body {
       box-shadow: 0 0 15px theme('colors.primary.DEFAULT'), 0 0 30px theme('colors.primary.DEFAULT');
     }
   }
+
+  .orbital-animation::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border-top: 4px solid hsl(var(--accent));
+    border-right: 4px solid hsl(var(--accent));
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid transparent;
+    animation: orbit 4s linear infinite;
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }

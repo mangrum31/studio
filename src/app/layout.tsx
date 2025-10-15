@@ -28,8 +28,11 @@ export default function RootLayout({
             {children}
           </main>
           <div className="fixed bottom-8 left-8 z-50">
-            <div className="shining-star w-24 h-24 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg">
-              Quiz
+            <div className="relative w-20 h-20">
+              <div className="absolute inset-0 orbital-animation" />
+              <div className="shining-star w-full h-full bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-base">
+                Quiz
+              </div>
             </div>
           </div>
           <Toaster />
