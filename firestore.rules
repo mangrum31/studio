@@ -1,0 +1,127 @@
+/**
+ * @fileoverview Firestore Security Rules for a quiz application.
+ *
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model for user profiles and quiz attempts,
+ * while allowing public read access to quiz definitions and questions. Write access to quizzes
+ * and questions is not currently restricted to admins but should be.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores user profiles; only accessible by the user themselves.
+ * - /quizzes/{quizId}: Stores quiz definitions; publicly readable.
+ * - /quizzes/{quizId}/questions/{questionId}: Stores questions for each quiz; publicly readable.
+ * - /users/{userId}/quiz_attempts/{quizAttemptId}: Stores quiz attempts made by a user; only accessible by the user.
+ * - /users/{userId}/quiz_attempts/{quizAttemptId}/attempt_answers/{attemptAnswerId}: Stores individual answers; only accessible by the user.
+ *
+ * Key Security Decisions:
+ * - Users can only read and write their own data under the `/users/{userId}` collection.
+ * - Quizzes and Questions are publicly readable.
+ * - Listing of Quizzes is allowed for everyone.
+ * - Listing of Questions for a specific quiz is allowed for everyone.
+ * - Listing of QuizAttempts is allowed only for the owning user.
+ * - Listing of AttemptAnswers is allowed only for the owning user.
+ *
+ * Denormalization for Authorization:
+ * - The `AttemptAnswer` documents in the `/users/{userId}/quiz_attempts/{quizAttemptId}/attempt_answers/{attemptAnswerId}` collection
+ *   include the `quizAttemptId`, enabling rules to verify the parent `QuizAttempt` relationship without additional `get()` calls.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Controls access to user profile data.
+     * @path /users/{userId}
+     * @allow (create) - Authenticated user can create their own profile.
+     * @allow (get, list) - Authenticated user can read their own profile.
+     * @allow (update, delete) - Authenticated user can update/delete their own profile.
+     * @deny (create) - Unauthenticated user cannot create a profile.
+     * @deny (get, list, update, delete) - Another authenticated user can't access this profile.
+     * @principle Enforces document ownership for user profiles.
+     */
+    match /users/{userId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get, list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Controls access to quiz definitions.
+     * @path /quizzes/{quizId}
+     * @allow (get, list) - Any user can read quiz definitions.
+     * @deny (create, update, delete) - Only admins should be able to create, update, or delete quizzes (not yet implemented).
+     * @principle Public read access with restricted write access.
+     */
+    match /quizzes/{quizId} {
+      allow get, list: if true;
+      allow create, update, delete: if false; // TODO: Add admin role check for writes.
+    }
+
+    /**
+     * @description Controls access to questions within a quiz.
+     * @path /quizzes/{quizId}/questions/{questionId}
+     * @allow (get, list) - Any user can read questions.
+     * @deny (create, update, delete) - Only admins should be able to create, update, or delete questions (not yet implemented).
+     * @principle Public read access with restricted write access.
+     */
+    match /quizzes/{quizId}/questions/{questionId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;  // TODO: Add admin role check for writes.
+    }
+
+    /**
+     * @description Controls access to quiz attempts made by a user.
+     * @path /users/{userId}/quiz_attempts/{quizAttemptId}
+     * @allow (create, get, list) - Authenticated user can create, read and list their own quiz attempts.
+     * @allow (update, delete) - Authenticated user can update/delete their own quiz attempts.
+     * @deny (create, get, list, update, delete) - Another authenticated user cannot access this data.
+     * @principle Enforces document ownership for quiz attempts.
+     */
+    match /users/{userId}/quiz_attempts/{quizAttemptId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get, list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.userId == userId;
+      allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Controls access to individual answers within a quiz attempt.
+     * @path /users/{userId}/quiz_attempts/{quizAttemptId}/attempt_answers/{attemptAnswerId}
+     * @allow (create, get, list) - Authenticated user can create, read and list their own answers.
+     * @allow (update, delete) - Authenticated user can update/delete their own answers.
+     * @deny (create, get, list, update, delete) - Another authenticated user cannot access this data.
+     * @principle Enforces document ownership for attempt answers and ensures quiz attempt consistency.
+     */
+    match /users/{userId}/quiz_attempts/{quizAttemptId}/attempt_answers/{attemptAnswerId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow get, list: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.quizAttemptId == quizAttemptId;
+      allow update: if isExistingOwner(userId) && request.resource.data.quizAttemptId == quizAttemptId;
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+}
