@@ -55,6 +55,18 @@ export default function Home() {
     )
   }
 
+  const WavyText = ({ text }: { text: string }) => {
+    return (
+      <h1 className="font-headline text-4xl sm:text-5xl font-bold text-primary wavy-text">
+        {text.split('').map((char, index) => (
+          <span key={index} style={{ '--i': index } as React.CSSProperties}>
+            {char === ' ' ? '\u00A0' : char}
+          </span>
+        ))}
+      </h1>
+    );
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 sm:p-8 md:p-12 bg-background">
       <div className="w-full max-w-2xl">
@@ -70,9 +82,7 @@ export default function Home() {
                 data-ai-hint={headerImage.imageHint}
               />
             )}
-            <h1 className="font-headline text-4xl sm:text-5xl font-bold text-primary">
-              {title}
-            </h1>
+            <WavyText text={title} />
           </div>
           <div className="flex space-x-2 mt-6">
             <Button 
