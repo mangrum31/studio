@@ -11,7 +11,7 @@ export function Logo() {
         </div>
       </div>
       <span className="text-xl font-semibold text-foreground hidden sm:inline-block">
-        BD Quiz
+        Quiz Box
       </span>
     </Link>
   );

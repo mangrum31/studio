@@ -30,7 +30,7 @@ export default function Home() {
   }, [auth]);
 
 
-  const title = useMemo(() => language === 'en' ? 'Bangladesh Kids Quiz' : 'বাংলাদেশ কিডস কুইজ', [language]);
+  const title = useMemo(() => language === 'en' ? 'Quiz Box' : 'কুইজ বক্স', [language]);
   const topics = useMemo(() => Object.keys(quizTopics), []);
 
   const questions = useMemo(() => {

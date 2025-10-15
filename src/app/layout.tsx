@@ -5,8 +5,8 @@ import { FirebaseClientProvider } from '@/firebase/client-provider';
 import TopNav from '@/components/TopNav';
 
 export const metadata: Metadata = {
-  title: 'Bangladesh Kids Quiz',
-  description: 'An engaging quiz app for Bangladeshi children.',
+  title: 'Quiz Box',
+  description: 'An engaging quiz app for everyone.',
 };
 
 export default function RootLayout({
