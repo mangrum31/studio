@@ -114,7 +114,7 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
                 )}
               >
                 <RadioGroupItem value={option.text} id={option.text} className="sr-only" />
-                {option.imageUrl && (
+                {option.imageUrl ? (
                     <div className="relative w-32 h-32 mb-2">
                         <Image 
                             src={option.imageUrl}
@@ -124,7 +124,7 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
                             data-ai-hint={option.imageHint}
                         />
                     </div>
-                )}
+                ): null}
                 <span className={cn("text-base", getOptionClassName(option.text))}>{option.text}</span>
               </Label>
             ))}
