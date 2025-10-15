@@ -27,7 +27,7 @@ export default function RootLayout({
           <main className="flex min-h-screen flex-col items-center justify-center p-4 sm:p-8 md:p-12 bg-background pt-24">
             {children}
           </main>
-          <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
+          <div className="fixed bottom-8 left-8 z-50">
             <div className="shining-star w-24 h-24 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-lg">
               Quiz
             </div>
