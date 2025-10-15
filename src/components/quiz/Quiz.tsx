@@ -7,6 +7,10 @@ import { QuizQuestion } from "./QuizQuestion";
 import { QuizResults } from "./QuizResults";
 import { Button } from "../ui/button";
 import { Home } from "lucide-react";
+import { useAuth, useFirestore } from "@/firebase";
+import { addDocumentNonBlocking } from "@/firebase/non-blocking-updates";
+import { collection } from "firebase/firestore";
+import type { Topic } from "@/app/page";
 
 interface Answer {
   questionId: number;
@@ -17,14 +21,17 @@ interface Answer {
 interface QuizProps {
     questions: QuizQuestionType[];
     language: 'en' | 'bn';
+    topic: Topic;
     onGoHome: () => void;
 }
 
-export function Quiz({ questions, language, onGoHome }: QuizProps) {
+export function Quiz({ questions, language, onGoHome, topic }: QuizProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [quizOver, setQuizOver] = useState(false);
+  const { user } = useAuth();
+  const firestore = useFirestore();
 
   const handleAnswer = (isCorrect: boolean, answer: string) => {
     if (isCorrect) {
@@ -41,10 +48,24 @@ export function Quiz({ questions, language, onGoHome }: QuizProps) {
   };
 
   const handleNext = () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1);
-    } else {
+    const isLastQuestion = currentQuestionIndex === questions.length - 1;
+
+    if (isLastQuestion) {
+      if (user && firestore) {
+        const attempt = {
+          userId: user.uid,
+          topic: topic,
+          language: language,
+          score: score + (answers.find(a => a.questionId === questions[currentQuestionIndex].id)?.isCorrect ? 1 : 0),
+          totalQuestions: questions.length,
+          timestamp: new Date(),
+        };
+        const attemptsCol = collection(firestore, `users/${user.uid}/quizAttempts`);
+        addDocumentNonBlocking(attemptsCol, attempt);
+      }
       setQuizOver(true);
+    } else {
+      setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
 
@@ -56,9 +77,12 @@ export function Quiz({ questions, language, onGoHome }: QuizProps) {
   };
 
   if (quizOver) {
+    // Final score calculation needs to happen before rendering results
+    const finalScore = score;
+
     return (
       <QuizResults
-        score={score}
+        score={finalScore}
         totalQuestions={questions.length}
         onRestart={handleRestart}
         onGoHome={onGoHome}

@@ -73,40 +73,38 @@
       "type": "object",
       "description": "Represents a user's attempt at taking a quiz.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the quiz attempt."
-        },
-        "quizId": {
-          "type": "string",
-          "description": "Reference to the Quiz being attempted. (Relationship: Quiz 1:N QuizAttempt)"
-        },
         "userId": {
           "type": "string",
           "description": "Reference to the User who is attempting the quiz. (Relationship: User 1:N QuizAttempt)"
         },
-        "startTime": {
+        "topic": {
           "type": "string",
-          "description": "Timestamp indicating when the quiz attempt started.",
-          "format": "date-time"
+          "description": "The topic of the quiz attempt."
         },
-        "endTime": {
+        "language": {
           "type": "string",
-          "description": "Timestamp indicating when the quiz attempt ended.",
-          "format": "date-time"
+          "description": "The language of the quiz."
         },
         "score": {
           "type": "number",
           "description": "The score achieved on the quiz attempt."
+        },
+        "totalQuestions": {
+          "type": "number",
+          "description": "Total number of questions in the quiz."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
         }
       },
       "required": [
-        "id",
-        "quizId",
         "userId",
-        "startTime",
-        "endTime",
-        "score"
+        "topic",
+        "language",
+        "score",
+        "totalQuestions",
+        "timestamp"
       ]
     },
     "User": {
@@ -178,104 +176,18 @@
     ]
   },
   "firestore": {
-    "structure": [
-      {
-        "path": "/users/{userId}",
-        "definition": {
-          "entityName": "User",
-          "schema": {
-            "$ref": "#/backend/entities/User"
-          },
-          "description": "Stores user profiles. Accessible only by the user themselves.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The unique identifier of the user, matching their Firebase Auth UID."
-            }
-          ]
-        }
+    "rules": "firestore.rules",
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/User"
       },
-      {
-        "path": "/quizzes/{quizId}",
-        "definition": {
-          "entityName": "Quiz",
-          "schema": {
-            "$ref": "#/backend/entities/Quiz"
-          },
-          "description": "Stores quiz definitions. Publicly readable but only editable by admins (not implemented in this data structure).",
-          "params": [
-            {
-              "name": "quizId",
-              "description": "The unique identifier of the quiz."
-            }
-          ]
-        }
+      "description": "Stores user profiles. Accessible only by the user themselves."
+    },
+    "/users/{userId}/quizAttempts/{attemptId}": {
+      "schema": {
+        "$ref": "#/entities/QuizAttempt"
       },
-      {
-        "path": "/quizzes/{quizId}/questions/{questionId}",
-        "definition": {
-          "entityName": "Question",
-          "schema": {
-            "$ref": "#/backend/entities/Question"
-          },
-          "description": "Stores questions associated with a specific quiz.",
-          "params": [
-            {
-              "name": "quizId",
-              "description": "The unique identifier of the quiz."
-            },
-            {
-              "name": "questionId",
-              "description": "The unique identifier of the question."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/users/{userId}/quiz_attempts/{quizAttemptId}",
-        "definition": {
-          "entityName": "QuizAttempt",
-          "schema": {
-            "$ref": "#/backend/entities/QuizAttempt"
-          },
-          "description": "Stores quiz attempts made by a specific user. Accessible only by the user themselves.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The unique identifier of the user, matching their Firebase Auth UID."
-            },
-            {
-              "name": "quizAttemptId",
-              "description": "The unique identifier of the quiz attempt."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/users/{userId}/quiz_attempts/{quizAttemptId}/attempt_answers/{attemptAnswerId}",
-        "definition": {
-          "entityName": "AttemptAnswer",
-          "schema": {
-            "$ref": "#/backend/entities/AttemptAnswer"
-          },
-          "description": "Stores the answers given by a user for a specific question in a quiz attempt. Accessible only by the user themselves. Includes denormalized 'quizAttemptId' for authorization independence.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The unique identifier of the user, matching their Firebase Auth UID."
-            },
-            {
-              "name": "quizAttemptId",
-              "description": "The unique identifier of the quiz attempt."
-            },
-            {
-              "name": "attemptAnswerId",
-              "description": "The unique identifier of the attempt answer."
-            }
-          ]
-        }
-      }
-    ],
-    "reasoning": "The Firestore structure is designed to support a quiz application tailored for Bangladeshi children. It emphasizes authorization independence and efficient data retrieval.  User data is stored in a private path (`/users/{userId}`), ensuring only the user can access their information. Quizzes are stored in a top-level `/quizzes` collection, while questions are stored as subcollections under each quiz (`/quizzes/{quizId}/questions`).  Quiz attempts are also structured under the user's private path (`/users/{userId}/quiz_attempts`). The selected answers made during a quiz attempt are stored in a subcollection (`/users/{userId}/quiz_attempts/{quizAttemptId}/attempt_answers`). This design promotes clear ownership and simplifies security rules. To ensure Authorization Independence, any data needed for authorization in subcollections (such as quiz ownership or user membership) is denormalized into the subcollection documents.\n\nSpecifically:\n\n*   **Authorization Independence (Denormalization):**  The `AttemptAnswer` subcollection stores the `quizAttemptId` which can be used to locate the parent document allowing for security rules that do not require `get()` calls.\n*   **QAPs (List Security):** The structure allows for secure listing of quizzes, questions, quiz attempts, and attempt answers, as each collection is secured based on its specific access requirements."
+      "description": "Stores a user's quiz attempts."
+    }
   }
 }

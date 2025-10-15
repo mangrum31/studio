@@ -4,21 +4,31 @@
 import Image from 'next/image';
 import { Quiz } from '@/components/quiz/Quiz';
 import placeholderImages from '@/lib/placeholder-images.json';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { quizQuestions, quizTopics } from '@/lib/quiz-data';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from '@/components/ui/label';
+import { useAuth } from '@/firebase';
+import { initiateAnonymousSignIn } from '@/firebase/non-blocking-login';
 
 type Language = 'en' | 'bn';
-type Topic = 'all' | 'alphabet' | 'national_symbols' | 'geography' | 'literature_arts' | 'history' | 'culture_lifestyle' | 'sports';
+export type Topic = 'all' | 'alphabet' | 'national_symbols' | 'geography' | 'literature_arts' | 'history' | 'culture_lifestyle' | 'sports';
 
 export default function Home() {
   const headerImage = placeholderImages.placeholderImages.find(p => p.id === "shapla-flower");
   const [language, setLanguage] = useState<Language>('en');
   const [selectedTopic, setSelectedTopic] = useState<Topic>('all');
   const [quizStarted, setQuizStarted] = useState(false);
+  const auth = useAuth();
+
+  useEffect(() => {
+    if (auth && !auth.currentUser) {
+      initiateAnonymousSignIn(auth);
+    }
+  }, [auth]);
+
 
   const title = useMemo(() => language === 'en' ? 'Bangladesh Kids Quiz' : 'বাংলাদেশ কিডস কুইজ', [language]);
   const topics = useMemo(() => Object.keys(quizTopics), []);
@@ -28,7 +38,7 @@ export default function Home() {
     if (selectedTopic === 'all') {
       return Object.values(questionsByLang).flat().sort(() => Math.random() - 0.5);
     }
-    return (questionsByLang[selectedTopic] || []).sort(() => Math.random() - 0.5);
+    return (questionsByLang[selectedTopic as Exclude<Topic, 'all'>] || []).sort(() => Math.random() - 0.5);
   }, [language, selectedTopic]);
   
   const handleLanguageChange = (lang: Language) => {
@@ -47,11 +57,14 @@ export default function Home() {
 
   if (quizStarted) {
     return (
-      <main className="flex min-h-screen flex-col items-center p-4 sm:p-8 md:p-12 bg-background">
-        <div className="w-full max-w-4xl">
-           <Quiz questions={questions} language={language} onGoHome={handleGoHome} />
-        </div>
-      </main>
+      <div className="w-full max-w-4xl">
+         <Quiz 
+            questions={questions} 
+            language={language} 
+            topic={selectedTopic}
+            onGoHome={handleGoHome} 
+          />
+      </div>
     )
   }
 
@@ -68,66 +81,52 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 sm:p-8 md:p-12 bg-background">
-      <div className="w-full max-w-2xl">
-        <header className="flex flex-col items-center text-center mb-8">
-          <div className='flex items-center justify-center'>
-            {headerImage && (
-              <Image 
-                src={headerImage.imageUrl}
-                alt={headerImage.description}
-                width={80}
-                height={80}
-                className="mr-4 rounded-full"
-                data-ai-hint={headerImage.imageHint}
-              />
-            )}
-            <WavyText text={title} />
-          </div>
-          <div className="flex space-x-2 mt-6">
-            <Button 
-              onClick={() => handleLanguageChange('en')} 
-              variant={language === 'en' ? 'default' : 'outline'}
-              className={cn("transition-all", language === 'en' && "ring-2 ring-primary")}
-            >
-              English
-            </Button>
-            <Button 
-              onClick={() => handleLanguageChange('bn')} 
-              variant={language === 'bn' ? 'default' : 'outline'}
-              className={cn("transition-all", language === 'bn' && "ring-2 ring-primary")}
-            >
-              বাংলা
-            </Button>
-          </div>
-        </header>
-        
-        <div className="bg-card p-8 rounded-lg shadow-lg flex flex-col items-center space-y-6">
-            <h2 className="text-2xl font-headline text-card-foreground">{language === 'en' ? 'Choose a Topic' : 'একটি বিষয় নির্বাচন করুন'}</h2>
-            <div className="w-full max-w-xs">
-                <Label htmlFor="topic-select" className="sr-only">
-                    {language === 'en' ? 'Topic' : 'বিষয়'}
-                </Label>
-                <Select value={selectedTopic} onValueChange={(value) => setSelectedTopic(value as Topic)}>
-                    <SelectTrigger id="topic-select" className="w-full">
-                        <SelectValue placeholder={language === 'en' ? "Select a topic" : "বিষয় নির্বাচন"} />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">{language === 'en' ? 'All Topics' : 'সব বিষয়'}</SelectItem>
-                        {topics.map(topicKey => (
-                            <SelectItem key={topicKey} value={topicKey}>
-                                {quizTopics[topicKey as keyof typeof quizTopics][language]}
-                            </SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
-            </div>
-            <Button onClick={handleStartQuiz} size="lg" className="w-full max-w-xs">
-                {language === 'en' ? 'Start Quiz' : 'কুইজ শুরু করুন'}
-            </Button>
+    <div className="w-full max-w-2xl">
+      <header className="flex flex-col items-center text-center mb-8">
+        <WavyText text={title} />
+        <div className="flex space-x-2 mt-6">
+          <Button 
+            onClick={() => handleLanguageChange('en')} 
+            variant={language === 'en' ? 'default' : 'outline'}
+            className={cn("transition-all", language === 'en' && "ring-2 ring-primary")}
+          >
+            English
+          </Button>
+          <Button 
+            onClick={() => handleLanguageChange('bn')} 
+            variant={language === 'bn' ? 'default' : 'outline'}
+            className={cn("transition-all", language === 'bn' && "ring-2 ring-primary")}
+          >
+            বাংলা
+          </Button>
         </div>
-
+      </header>
+      
+      <div className="bg-card p-8 rounded-lg shadow-lg flex flex-col items-center space-y-6">
+          <h2 className="text-2xl font-headline text-card-foreground">{language === 'en' ? 'Choose a Topic' : 'একটি বিষয় নির্বাচন করুন'}</h2>
+          <div className="w-full max-w-xs">
+              <Label htmlFor="topic-select" className="sr-only">
+                  {language === 'en' ? 'Topic' : 'বিষয়'}
+              </Label>
+              <Select value={selectedTopic} onValueChange={(value) => setSelectedTopic(value as Topic)}>
+                  <SelectTrigger id="topic-select" className="w-full">
+                      <SelectValue placeholder={language === 'en' ? "Select a topic" : "বিষয় নির্বাচন"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                      <SelectItem value="all">{language === 'en' ? 'All Topics' : 'সব বিষয়'}</SelectItem>
+                      {topics.map(topicKey => (
+                          <SelectItem key={topicKey} value={topicKey}>
+                              {quizTopics[topicKey as keyof typeof quizTopics][language]}
+                          </SelectItem>
+                      ))}
+                  </SelectContent>
+              </Select>
+          </div>
+          <Button onClick={handleStartQuiz} size="lg" className="w-full max-w-xs">
+              {language === 'en' ? 'Start Quiz' : 'কুইজ শুরু করুন'}
+          </Button>
       </div>
-    </main>
+
+    </div>
   );
 }
