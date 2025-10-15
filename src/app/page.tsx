@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from '@/components/ui/label';
 
 type Language = 'en' | 'bn';
-type Topic = 'all' | 'national_symbols' | 'geography' | 'literature_arts' | 'history';
+type Topic = 'all' | 'national_symbols' | 'geography' | 'literature_arts' | 'history' | 'culture_lifestyle' | 'sports';
 
 export default function Home() {
   const headerImage = placeholderImages.placeholderImages.find(p => p.id === "shapla-flower");

@@ -28,7 +28,15 @@ export const quizTopics = {
   history: {
     en: "History",
     bn: "ইতিহাস",
-  }
+  },
+  culture_lifestyle: {
+    en: "Culture & Lifestyle",
+    bn: "সংস্কৃতি ও জীবনধারা",
+  },
+  sports: {
+    en: "Sports",
+    bn: "খেলাধুলা",
+  },
 };
 
 export const quizQuestions: QuizData = {
@@ -62,6 +70,20 @@ export const quizQuestions: QuizData = {
         correctAnswer: "Jackfruit",
         topic: "National Symbols"
       },
+      {
+        id: 11,
+        question: "What is the national tree of Bangladesh?",
+        options: ["Banyan Tree", "Mango Tree", "Jackfruit Tree", "Neem Tree"],
+        correctAnswer: "Mango Tree",
+        topic: "National Symbols"
+      },
+      {
+        id: 12,
+        question: "What is the national bird of Bangladesh?",
+        options: ["Crow", "Dove", "Magpie-robin (Doyel)", "Parrot"],
+        correctAnswer: "Magpie-robin (Doyel)",
+        topic: "National Symbols"
+      }
     ],
     geography: [
       {
@@ -80,9 +102,16 @@ export const quizQuestions: QuizData = {
       },
       {
         id: 7,
-        question: "What is the main river of Bangladesh?",
-        options: ["Meghna", "Padma", "Jamuna", "Brahmaputra"],
-        correctAnswer: "Padma",
+        question: "What is the largest mangrove forest in the world, located in Bangladesh?",
+        options: ["Amazon Rainforest", "Sundarbans", "Bhawal National Park", "Lawachara National Park"],
+        correctAnswer: "Sundarbans",
+        topic: "Geography"
+      },
+      {
+        id: 13,
+        question: "Which river is known as the 'Jamuna' in Bangladesh?",
+        options: ["Ganges", "Padma", "Brahmaputra", "Meghna"],
+        correctAnswer: "Brahmaputra",
         topic: "Geography"
       },
     ],
@@ -92,6 +121,13 @@ export const quizQuestions: QuizData = {
         question: "Who is the national poet of Bangladesh?",
         options: ["Rabindranath Tagore", "Jasimuddin", "Kazi Nazrul Islam", "Sukumar Ray"],
         correctAnswer: "Kazi Nazrul Islam",
+        topic: "Literature & Arts"
+      },
+      {
+        id: 14,
+        question: "Who wrote the national anthem of Bangladesh, 'Amar Shonar Bangla'?",
+        options: ["Kazi Nazrul Islam", "Jasimuddin", "Rabindranath Tagore", "Farrukh Ahmad"],
+        correctAnswer: "Rabindranath Tagore",
         topic: "Literature & Arts"
       },
     ],
@@ -109,6 +145,45 @@ export const quizQuestions: QuizData = {
         options: ["Independence Day", "Ekushey February", "Victory Day", "Pohela Boishakh"],
         correctAnswer: "Ekushey February",
         topic: "History"
+      },
+      {
+        id: 15,
+        question: "The liberation war of Bangladesh lasted for how many months?",
+        options: ["6 months", "9 months", "1 year", "2 years"],
+        correctAnswer: "9 months",
+        topic: "History"
+      },
+    ],
+    culture_lifestyle: [
+      {
+        id: 16,
+        question: "What is the main festival celebrated by Bengalis regardless of religion?",
+        options: ["Eid", "Durga Puja", "Pohela Boishakh", "Christmas"],
+        correctAnswer: "Pohela Boishakh",
+        topic: "Culture & Lifestyle"
+      },
+      {
+        id: 17,
+        question: "What is a 'Rickshaw' in Bangladesh?",
+        options: ["A type of food", "A traditional dress", "A three-wheeled passenger cart", "A musical instrument"],
+        correctAnswer: "A three-wheeled passenger cart",
+        topic: "Culture & Lifestyle"
+      },
+    ],
+    sports: [
+      {
+        id: 18,
+        question: "What is the national sport of Bangladesh?",
+        options: ["Cricket", "Football", "Kabaddi", "Hockey"],
+        correctAnswer: "Kabaddi",
+        topic: "Sports"
+      },
+      {
+        id: 19,
+        question: "Which cricketer is known as the 'Tiger of Bengal'?",
+        options: ["Shakib Al Hasan", "Mashrafe Mortaza", "Tamim Iqbal", "Mushfiqur Rahim"],
+        correctAnswer: "Mashrafe Mortaza",
+        topic: "Sports"
       }
     ]
   },
@@ -139,7 +214,21 @@ export const quizQuestions: QuizData = {
         id: 8,
         question: "বাংলাদেশের জাতীয় ফল কোনটি?",
         options: ["আম", "কাঁঠাল", "লিচু", "কলা"],
-        correctAnswer: "কাঁঠال",
+        correctAnswer: "কাঁঠাল",
+        topic: "জাতীয় প্রতীক"
+      },
+      {
+        id: 11,
+        question: "বাংলাদেশের জাতীয় বৃক্ষ কোনটি?",
+        options: ["বট গাছ", "আম গাছ", "কাঁঠাল গাছ", "নিম গাছ"],
+        correctAnswer: "আম গাছ",
+        topic: "জাতীয় প্রতীক"
+      },
+      {
+        id: 12,
+        question: "বাংলাদেশের জাতীয় পাখি কোনটি?",
+        options: ["কাক", "কবুতর", "দোয়েল", "টিয়া"],
+        correctAnswer: "দোয়েল",
         topic: "জাতীয় প্রতীক"
       }
     ],
@@ -160,9 +249,16 @@ export const quizQuestions: QuizData = {
       },
       {
         id: 7,
-        question: "বাংলাদেশের প্রধান নদী কোনটি?",
-        options: ["মেঘনা", "পদ্মা", "যমুনা", "ব্রহ্মপুত্র"],
-        correctAnswer: "পদ্মা",
+        question: "বিশ্বের বৃহত্তম ম্যানগ্রোভ বন কোনটি, যা বাংলাদেশে অবস্থিত?",
+        options: ["আমাজন রেইনফরেস্ট", "সুন্দরবন", "ভাওয়াল জাতীয় উদ্যান", "লাউয়াছড়া জাতীয় উদ্যান"],
+        correctAnswer: "সুন্দরবন",
+        topic: "ভূগোল"
+      },
+      {
+        id: 13,
+        question: "বাংলাদেশে কোন নদী 'যমুনা' নামে পরিচিত?",
+        options: ["গঙ্গা", "পদ্মা", "ব্রহ্মপুত্র", "মেঘনা"],
+        correctAnswer: "ব্রহ্মপুত্র",
         topic: "ভূগোল"
       },
     ],
@@ -173,6 +269,13 @@ export const quizQuestions: QuizData = {
           options: ["রবীন্দ্রনাথ ঠাকুর", "জসীমউদ্দিন", "কাজী নজরুল ইসলাম", "সুকুমার রায়"],
           correctAnswer: "কাজী নজরুল ইসলাম",
           topic: "সাহিত্য ও শিল্প"
+      },
+      {
+        id: 14,
+        question: "বাংলাদেশের জাতীয় সঙ্গীত 'আমার সোনার বাংলা' কে লিখেছেন?",
+        options: ["কাজী নজরুল ইসলাম", "জসীমউদ্দিন", "রবীন্দ্রনাথ ঠাকুর", "ফররুখ আহমদ"],
+        correctAnswer: "রবীন্দ্রনাথ ঠাকুর",
+        topic: "সাহিত্য ও শিল্প"
       },
     ],
     history: [
@@ -189,6 +292,45 @@ export const quizQuestions: QuizData = {
         options: ["স্বাধীনতা দিবস", "একুশে ফেব্রুয়ারি", "বিজয় দিবস", "পহেলা বৈশাখ"],
         correctAnswer: "একুশে ফেব্রুয়ারি",
         topic: "ইতিহাস"
+      },
+      {
+        id: 15,
+        question: "বাংলাদেশের মুক্তিযুদ্ধ কত মাস স্থায়ী হয়েছিল?",
+        options: ["৬ মাস", "৯ মাস", "১ বছর", "২ বছর"],
+        correctAnswer: "৯ মাস",
+        topic: "ইতিহাস"
+      },
+    ],
+    culture_lifestyle: [
+      {
+        id: 16,
+        question: "ধর্ম-বর্ণ নির্বিশেষে বাঙালিরা কোন প্রধান উৎসব পালন করে?",
+        options: ["ঈদ", "দুর্গাপূজা", "পহেলা বৈশাখ", "ক্রিসমাস"],
+        correctAnswer: "পহেলা বৈশাখ",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+      {
+        id: 17,
+        question: "বাংলাদেশে 'রিকশা' কী?",
+        options: ["এক ধরনের খাবার", "একটি ঐতিহ্যবাহী পোশাক", "একটি তিন চাকার যাত্রীবাহী গাড়ি", "একটি বাদ্যযন্ত্র"],
+        correctAnswer: "একটি তিন চাকার যাত্রীবাহী গাড়ি",
+        topic: "সংস্কৃতি ও জীবনধারা"
+      },
+    ],
+    sports: [
+      {
+        id: 18,
+        question: "বাংলাদেশের জাতীয় খেলা কোনটি?",
+        options: ["ক্রিকেট", "ফুটবল", "কাবাডি", "হকি"],
+        correctAnswer: "কাবাডি",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 19,
+        question: "কোন ক্রিকেটার 'বাংলার টাইগার' নামে পরিচিত?",
+        options: ["সাকিব আল হাসান", "মাশরাফি মুর্তজা", "তামিম ইকবাল", "মুশফিকুর রহিম"],
+        correctAnswer: "মাশরাফি মুর্তজা",
+        topic: "খেলাধুলা"
       }
     ]
   },
