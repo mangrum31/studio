@@ -232,6 +232,272 @@ export const quizQuestions: QuizData = {
         options: [{text: "Shakib Al Hasan"}, {text: "Mashrafe Mortaza"}, {text: "Tamim Iqbal"}, {text: "Mushfiqur Rahim"}],
         correctAnswer: "Mashrafe Mortaza",
         topic: "Sports"
+      },
+      {
+        id: 23,
+        question: "How many players are there in a cricket team?",
+        options: [{text: "7"}, {text: "9"}, {text: "11"}, {text: "13"}],
+        correctAnswer: "11",
+        topic: "Sports"
+      },
+      {
+        id: 24,
+        question: "How many players are there in a football team?",
+        options: [{text: "7"}, {text: "9"}, {text: "11"}, {text: "13"}],
+        correctAnswer: "11",
+        topic: "Sports"
+      },
+      {
+        id: 25,
+        question: "Which is the most popular sport in Bangladesh?",
+        options: [{text: "Football"}, {text: "Cricket"}, {text: "Kabaddi"}, {text: "Badminton"}],
+        correctAnswer: "Cricket",
+        topic: "Sports"
+      },
+      {
+        id: 26,
+        question: "Which famous Bangladeshi player is associated with cricket?",
+        options: [{text: "Jamal Bhuyan"}, {text: "Mamunul Islam"}, {text: "Shakib Al Hasan"}, {text: "Siddikur Rahman"}],
+        correctAnswer: "Shakib Al Hasan",
+        topic: "Sports"
+      },
+      {
+        id: 27,
+        question: "What is the short name for Bangladesh Krira Shikkha Protishtan?",
+        options: [{text: "BKSP"}, {text: "BCB"}, {text: "BFF"}, {text: "BOA"}],
+        correctAnswer: "BKSP",
+        topic: "Sports"
+      },
+      {
+        id: 28,
+        question: "Which game requires a bat, ball, and wickets?",
+        options: [{text: "Football"}, {text: "Hockey"}, {text: "Cricket"}, {text: "Badminton"}],
+        correctAnswer: "Cricket",
+        topic: "Sports"
+      },
+      {
+        id: 29,
+        question: "In which game do you hit the ball with your feet?",
+        options: [{text: "Volleyball"}, {text: "Basketball"}, {text: "Football"}, {text: "Handball"}],
+        correctAnswer: "Football",
+        topic: "Sports"
+      },
+      {
+        id: 30,
+        question: "What is a cricket bat made of?",
+        options: [{text: "Plastic"}, {text: "Willow Wood"}, {text: "Metal"}, {text: "Bamboo"}],
+        correctAnswer: "Willow Wood",
+        topic: "Sports"
+      },
+      {
+        id: 31,
+        question: "How many stumps are there in cricket?",
+        options: [{text: "2"}, {text: "3"}, {text: "4"}, {text: "6"}],
+        correctAnswer: "3",
+        topic: "Sports"
+      },
+      {
+        id: 32,
+        question: "What is the short form of One Day International cricket?",
+        options: [{text: "T20"}, {text: "Test"}, {text: "ODI"}, {text: "BPL"}],
+        correctAnswer: "ODI",
+        topic: "Sports"
+      },
+      {
+        id: 33,
+        question: "What is the usual color of the dress in Test cricket?",
+        options: [{text: "Blue"}, {text: "Green"}, {text: "White"}, {text: "Red"}],
+        correctAnswer: "White",
+        topic: "Sports"
+      },
+      {
+        id: 34,
+        question: "What is it called when a batsman scores 100 runs?",
+        options: [{text: "Fifty"}, {text: "Century"}, {text: "Double Century"}, {text: "Hattrick"}],
+        correctAnswer: "Century",
+        topic: "Sports"
+      },
+      {
+        id: 35,
+        question: "What is it called when a bowler takes 3 wickets in a row?",
+        options: [{text: "Maiden"}, {text: "Clean Bowled"}, {text: "Hattrick"}, {text: "Wicket-maiden"}],
+        correctAnswer: "Hattrick",
+        topic: "Sports"
+      },
+      {
+        id: 36,
+        question: "In which year did Bangladesh win its first ICC Trophy?",
+        options: [{text: "1997"}, {text: "1999"}, {text: "2003"}, {text: "2007"}],
+        correctAnswer: "1997",
+        topic: "Sports"
+      },
+      {
+        id: 37,
+        question: "Who was the captain of the 2019 Under-19 World Cup winning team?",
+        options: [{text: "Mushfiqur Rahim"}, {text: "Shakib Al Hasan"}, {text: "Akbar Ali"}, {text: "Mashrafe Mortaza"}],
+        correctAnswer: "Akbar Ali",
+        topic: "Sports"
+      },
+      {
+        id: 38,
+        question: "What happens when all ten wickets are taken in cricket?",
+        options: [{text: "Innings Break"}, {text: "All Out"}, {text: "Match Over"}, {text: "Powerplay"}],
+        correctAnswer: "All Out",
+        topic: "Sports"
+      },
+      {
+        id: 39,
+        question: "What is it called when a batsman scores 50 runs?",
+        options: [{text: "Half-century"}, {text: "Century"}, {text: "Fifty-run partnership"}, {text: "Fifty"}],
+        correctAnswer: "Half-century",
+        topic: "Sports"
+      },
+      {
+        id: 40,
+        question: "Where is the Sher-e-Bangla National Cricket Stadium located?",
+        options: [{text: "Chattogram"}, {text: "Khulna"}, {text: "Mirpur, Dhaka"}, {text: "Sylhet"}],
+        correctAnswer: "Mirpur, Dhaka",
+        topic: "Sports"
+      },
+      {
+        id: 41,
+        question: "In which sport do you find an umpire?",
+        options: [{text: "Football"}, {text: "Basketball"}, {text: "Cricket"}, {text: "Volleyball"}],
+        correctAnswer: "Cricket",
+        topic: "Sports"
+      },
+      {
+        id: 42,
+        question: "The Cricket World Cup is generally held every how many years?",
+        options: [{text: "2 years"}, {text: "3 years"}, {text: "4 years"}, {text: "5 years"}],
+        correctAnswer: "4 years",
+        topic: "Sports"
+      },
+      {
+        id: 43,
+        question: "How many players are in a Kabaddi team on the field?",
+        options: [{text: "5"}, {text: "7"}, {text: "9"}, {text: "11"}],
+        correctAnswer: "7",
+        topic: "Sports"
+      },
+      {
+        id: 44,
+        question: "When was Kabaddi recognized as the national sport of Bangladesh?",
+        options: [{text: "1971"}, {text: "1972"}, {text: "1973"}, {text: "1975"}],
+        correctAnswer: "1972",
+        topic: "Sports"
+      },
+      {
+        id: 45,
+        question: "What is the name of the traditional boat race in rural areas?",
+        options: [{text: "Nouka Khela"}, {text: "Nouka Baich"}, {text: "Shorot Khela"}, {text: "Boishakhi Mela"}],
+        correctAnswer: "Nouka Baich",
+        topic: "Sports"
+      },
+      {
+        id: 46,
+        question: "In which game do two teams pull on a rope?",
+        options: [{text: "Gollachut"}, {text: "Tug of War"}, {text: "Kanamachi"}, {text: "Dariabandha"}],
+        correctAnswer: "Tug of War",
+        topic: "Sports"
+      },
+      {
+        id: 47,
+        question: "Name a popular village game where one has to play blindfolded.",
+        options: [{text: "Gollachut"}, {text: "Kanamachi"}, {text: "Bouchi"}, {text: "Ekka Dokka"}],
+        correctAnswer: "Kanamachi",
+        topic: "Sports"
+      },
+      {
+        id: 48,
+        question: "Who is the only person allowed to handle the ball in football?",
+        options: [{text: "Defender"}, {text: "Striker"}, {text: "Goalkeeper"}, {text: "Midfielder"}],
+        correctAnswer: "Goalkeeper",
+        topic: "Sports"
+      },
+      {
+        id: 49,
+        question: "Which card is shown in football as a warning?",
+        options: [{text: "Red Card"}, {text: "Yellow Card"}, {text: "Green Card"}, {text: "Blue Card"}],
+        correctAnswer: "Yellow Card",
+        topic: "Sports"
+      },
+      {
+        id: 50,
+        question: "What do you use a racket and shuttlecock for?",
+        options: [{text: "Table Tennis"}, {text: "Lawn Tennis"}, {text: "Badminton"}, {text: "Squash"}],
+        correctAnswer: "Badminton",
+        topic: "Sports"
+      },
+      {
+        id: 51,
+        question: "What do you need for table tennis?",
+        options: [{text: "A big table and ball"}, {text: "A small table, small ball, and paddle"}, {text: "A net and a ball"}, {text: "A racket and a ball"}],
+        correctAnswer: "A small table, small ball, and paddle",
+        topic: "Sports"
+      },
+      {
+        id: 52,
+        question: "Where is Bangabandhu National Stadium located?",
+        options: [{text: "Dhaka"}, {text: "Chittagong"}, {text: "Rajshahi"}, {text: "Sylhet"}],
+        correctAnswer: "Dhaka",
+        topic: "Sports"
+      },
+      {
+        id: 53,
+        question: "Which team is called the 'Tigers'?",
+        options: [{text: "Bangladesh Football Team"}, {text: "Bangladesh Hockey Team"}, {text: "Bangladesh Cricket Team"}, {text: "Bangladesh Kabaddi Team"}],
+        correctAnswer: "Bangladesh Cricket Team",
+        topic: "Sports"
+      },
+      {
+        id: 54,
+        question: "What is the ball used in badminton called?",
+        options: [{text: "Cork"}, {text: "Feather Ball"}, {text: "Shuttlecock"}, {text: "Birdie"}],
+        correctAnswer: "Shuttlecock",
+        topic: "Sports"
+      },
+      {
+        id: 55,
+        question: "How many balls are there in one over in cricket?",
+        options: [{text: "4"}, {text: "5"}, {text: "6"}, {text: "7"}],
+        correctAnswer: "6",
+        topic: "Sports"
+      },
+      {
+        id: 56,
+        question: "When is a player called an 'all-rounder'?",
+        options: [{text: "Good at batting"}, {text: "Good at bowling"}, {text: "Good at both batting and bowling"}, {text: "Good at fielding"}],
+        correctAnswer: "Good at both batting and bowling",
+        topic: "Sports"
+      },
+      {
+        id: 57,
+        question: "What is a way to get out in cricket?",
+        options: [{text: "Bold"}, {text: "Catch Out"}, {text: "LBW"}, {text: "All of the above"}],
+        correctAnswer: "All of the above",
+        topic: "Sports"
+      },
+      {
+        id: 58,
+        question: "Where do you have to put the ball in basketball?",
+        options: [{text: "In the net"}, {text: "In the basket"}, {text: "In the goal"}, {text: "In the hole"}],
+        correctAnswer: "In the basket",
+        topic: "Sports"
+      },
+      {
+        id: 59,
+        question: "What is done before starting a game?",
+        options: [{text: "A coin toss"}, {text: "A prayer"}, {text: "A warm-up"}, {text: "A whistle"}],
+        correctAnswer: "A coin toss",
+        topic: "Sports"
+      },
+      {
+        id: 60,
+        question: "What is the biggest hit in cricket called?",
+        options: [{text: "Four (4 runs)"}, {text: "Six (6 runs)"}, {text: "Boundary"}, {text: "Over boundary"}],
+        correctAnswer: "Six (6 runs)",
+        topic: "Sports"
       }
     ]
   },
@@ -406,9 +672,9 @@ export const quizQuestions: QuizData = {
     sports: [
       {
         id: 18,
-        question: "বাংলাদেশের জাতীয় খেলা কোনটি?",
-        options: [{text: "ক্রিকেট"}, {text: "ফুটবল"}, {text: "কাবাডি"}, {text: "হকি"}],
-        correctAnswer: "কাবাডি",
+        question: "বাংলাদেশের জাতীয় খেলার নাম কী?",
+        options: [{text: "ক্রিকেট"}, {text: "ফুটবল"}, {text: "কাবাডি (হাডুডু)"}, {text: "হকি"}],
+        correctAnswer: "কাবাডি (হাডুডু)",
         topic: "খেলাধুলা"
       },
       {
@@ -416,6 +682,272 @@ export const quizQuestions: QuizData = {
         question: "কোন ক্রিকেটার 'বাংলার টাইগার' নামে পরিচিত?",
         options: [{text: "সাকিব আল হাসান"}, {text: "মাশরাফি মুর্তজা"}, {text: "তামিম ইকবাল"}, {text: "মুশফিকুর রহিম"}],
         correctAnswer: "মাশরাফি মুর্তজা",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 23,
+        question: "একটি ক্রিকেট খেলায় কতজন খেলোয়াড় থাকে?",
+        options: [{text: "৭ জন"}, {text: "৯ জন"}, {text: "১১ জন"}, {text: "১৩ জন"}],
+        correctAnswer: "১১ জন",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 24,
+        question: "একটি ফুটবল খেলায় কতজন খেলোয়াড় থাকে?",
+        options: [{text: "৭ জন"}, {text: "৯ জন"}, {text: "১১ জন"}, {text: "১৩ জন"}],
+        correctAnswer: "১১ জন",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 25,
+        question: "বাংলাদেশের সবচেয়ে জনপ্রিয় খেলা কোনটি?",
+        options: [{text: "ফুটবল"}, {text: "ক্রিকেট"}, {text: "কাবাডি"}, {text: "ব্যাডমিন্টন"}],
+        correctAnswer: "ক্রিকেট",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 26,
+        question: "বাংলাদেশের বিখ্যাত খেলোয়াড় সাকিব আল হাসান কোন খেলার খেলোয়াড়?",
+        options: [{text: "ফুটবল"}, {text: "হকি"}, {text: "ক্রিকেট"}, {text: "দাবা"}],
+        correctAnswer: "ক্রিকেট",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 27,
+        question: "বাংলাদেশ ক্রীড়া শিক্ষা প্রতিষ্ঠান-এর সংক্ষিপ্ত নাম কী?",
+        options: [{text: "বিকেএসপি"}, {text: "বিসিবি"}, {text: "বাফুফে"}, {text: "বিওএ"}],
+        correctAnswer: "বিকেএসপি",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 28,
+        question: "কোন খেলায় ব্যাট, বল আর উইকেট লাগে?",
+        options: [{text: "ফুটবল"}, {text: "হকি"}, {text: "ক্রিকেট"}, {text: "ব্যাডমিন্টন"}],
+        correctAnswer: "ক্রিকেট",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 29,
+        question: "কোন খেলায় পা দিয়ে বল মারতে হয়?",
+        options: [{text: "ভলিবল"}, {text: "বাস্কেটবল"}, {text: "ফুটবল"}, {text: "হ্যান্ডবল"}],
+        correctAnswer: "ফুটবল",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 30,
+        question: "ক্রিকেট খেলার ব্যাট কী দিয়ে তৈরি হয়?",
+        options: [{text: "প্লাস্টিক"}, {text: "উইলো কাঠ"}, {text: "ধাতু"}, {text: "বাঁশ"}],
+        correctAnswer: "উইলো কাঠ",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 31,
+        question: "ক্রিকেট খেলায় কয়টি স্টাম্প থাকে?",
+        options: [{text: "২টি"}, {text: "৩টি"}, {text: "৪টি"}, {text: "৬টি"}],
+        correctAnswer: "৩টি",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 32,
+        question: "একদিনের আন্তর্জাতিক ক্রিকেটকে সংক্ষেপে কী বলা হয়?",
+        options: [{text: "টি২০"}, {text: "টেস্ট"}, {text: "ওডিআই"}, {text: "বিপিএল"}],
+        correctAnswer: "ওডিআই",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 33,
+        question: "টেস্ট ক্রিকেট খেলার পোশাক সাধারণত কোন রঙের হয়?",
+        options: [{text: "নীল"}, {text: "সবুজ"}, {text: "সাদা"}, {text: "লাল"}],
+        correctAnswer: "সাদা",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 34,
+        question: "ক্রিকেটে সবচেয়ে বেশি রান করলে তাকে কী বলা হয়?",
+        options: [{text: "ফিফটি"}, {text: "সেঞ্চুরি (১০০ রান)"}, {text: "ডাবল সেঞ্চুরি"}, {text: "হ্যাটট্রিক"}],
+        correctAnswer: "সেঞ্চুরি (১০০ রান)",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 35,
+        question: "কোনো বোলার একবারে ৩টি উইকেট নিলে তাকে কী বলে?",
+        options: [{text: "মেইডেন"}, {text: "ক্লিন বোল্ড"}, {text: "হ্যাট্রিক"}, {text: "উইকেট-মেইডেন"}],
+        correctAnswer: "হ্যাট্রিক",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 36,
+        question: "বাংলাদেশ কত সালে প্রথম আইসিসি ট্রফি চ্যাম্পিয়ন হয়?",
+        options: [{text: "১৯৯৭ সালে"}, {text: "১৯৯৯ সালে"}, {text: "২০০৩ সালে"}, {text: "২০০৭ সালে"}],
+        correctAnswer: "১৯৯৭ সালে",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 37,
+        question: "২০১৯ অনুর্ধ্ব-১৯ বিশ্বকাপ জয়ী দলের অধিনায়ক কে ছিলেন?",
+        options: [{text: "মুশফিকুর রহিম"}, {text: "সাকিব আল হাসান"}, {text: "আকবর আলী"}, {text: "মাশরাফি বিন মর্তুজা"}],
+        correctAnswer: "আকবর আলী",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 38,
+        question: "ক্রিকেটে দশটা উইকেট নিলে কী হয়?",
+        options: [{text: "ইনিংস ব্রেক"}, {text: "অলআউট"}, {text: "ম্যাচ শেষ"}, {text: "পাওয়ার প্লে"}],
+        correctAnswer: "অলআউট",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 39,
+        question: "কোনো ব্যাটসম্যান ৫০ রান করলে তাকে কী বলা হয়?",
+        options: [{text: "হাফ-সেঞ্চুরি"}, {text: "সেঞ্চুরি"}, {text: "পঞ্চাশ রানের জুটি"}, {text: "পঞ্চাশ"}],
+        correctAnswer: "হাফ-সেঞ্চুরি",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 40,
+        question: "শেরে বাংলা জাতীয় ক্রিকেট স্টেডিয়াম কোথায় অবস্থিত?",
+        options: [{text: "চট্টগ্রাম"}, {text: "খুলনা"}, {text: "মিরপুর, ঢাকা"}, {text: "সিলেট"}],
+        correctAnswer: "মিরপুর, ঢাকা",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 41,
+        question: "কোন খেলার মাঠে আম্পায়ার থাকেন?",
+        options: [{text: "ফুটবল"}, {text: "বাস্কেটবল"}, {text: "ক্রিকেট"}, {text: "ভলিবল"}],
+        correctAnswer: "ক্রিকেট",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 42,
+        question: "বিশ্বকাপ ক্রিকেট খেলা সাধারণত কত বছর পর পর হয়?",
+        options: [{text: "২ বছর"}, {text: "৩ বছর"}, {text: "৪ বছর"}, {text: "৫ বছর"}],
+        correctAnswer: "৪ বছর",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 43,
+        question: "কাবাডি খেলায় একটি দলে মাঠে কতজন খেলোয়াড় থাকে?",
+        options: [{text: "৫ জন"}, {text: "৭ জন"}, {text: "৯ জন"}, {text: "১১ জন"}],
+        correctAnswer: "৭ জন",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 44,
+        question: "হাডুডু খেলাকে কবে বাংলাদেশের জাতীয় খেলা হিসেবে স্বীকৃতি দেওয়া হয়?",
+        options: [{text: "১৯৭১ সালে"}, {text: "১৯৭২ সালে"}, {text: "১৯৭৩ সালে"}, {text: "১৯৭৫ সালে"}],
+        correctAnswer: "১৯৭২ সালে",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 45,
+        question: "গ্রামের ঐতিহ্যবাহী নৌকা বাওয়া প্রতিযোগিতার নাম কী?",
+        options: [{text: "নৌকা খেলা"}, {text: "নৌকা বাইচ"}, {text: "শরৎ খেলা"}, {text: "বৈশাখী মেলা"}],
+        correctAnswer: "নৌকা বাইচ",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 46,
+        question: "কোন খেলায় দড়ি ধরে দু'দল টানাটানি করে?",
+        options: [{text: "গোল্লাছুট"}, {text: "রশি টানাটানি"}, {text: "কানামাছি"}, {text: "দাড়িয়াবান্ধা"}],
+        correctAnswer: "রশি টানাটানি",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 47,
+        question: "গ্রামের জনপ্রিয় একটি খেলার নাম বলো যেখানে চোখ বেঁধে খেলতে হয়?",
+        options: [{text: "গোল্লাছুট"}, {text: "কানামাছি"}, {text: "বউচি"}, {text: "এক্কা দোক্কা"}],
+        correctAnswer: "কানামাছি",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 48,
+        question: "ফুটবলে বল ধরার অনুমতি একমাত্র কার আছে?",
+        options: [{text: "ডিফেন্ডার"}, {text: "স্ট্রাইকার"}, {text: "গোলরক্ষক"}, {text: "মিডফিল্ডার"}],
+        correctAnswer: "গোলরক্ষক",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 49,
+        question: "কোন খেলায় হলুদ কার্ড দেখানো হয়?",
+        options: [{text: "ক্রিকেট"}, {text: "ফুটবল"}, {text: "হকি"}, {text: "বাস্কেটবল"}],
+        correctAnswer: "ফুটবল",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 50,
+        question: "কোন খেলায় র্যাকেট এবং শাটলকক ব্যবহার করা হয়?",
+        options: [{text: "টেবিল টেনিস"}, {text: "লন টেনিস"}, {text: "ব্যাডমিন্টন"}, {text: "স্কোয়াশ"}],
+        correctAnswer: "ব্যাডমিন্টন",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 51,
+        question: "কোন খেলায় টেবিল ও ছোট বল লাগে?",
+        options: [{text: "একটি বড় টেবিল এবং বল"}, {text: "একটি ছোট টেবিল, ছোট বল এবং প্যাডেল"}, {text: "একটি নেট এবং একটি বল"}, {text: "একটি র্যাকেট এবং একটি বল"}],
+        correctAnswer: "একটি ছোট টেবিল, ছোট বল এবং প্যাডেল",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 52,
+        question: "বঙ্গবন্ধু জাতীয় স্টেডিয়াম কোথায় অবস্থিত?",
+        options: [{text: "ঢাকা"}, {text: "চট্টগ্রাম"}, {text: "রাজশাহী"}, {text: "সিলেট"}],
+        correctAnswer: "ঢাকা",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 53,
+        question: "'টাইগার্স' (Tigers) নামে কোন দলকে ডাকা হয়?",
+        options: [{text: "বাংলাদেশ ফুটবল দল"}, {text: "বাংলাদেশ হকি দল"}, {text: "বাংলাদেশ ক্রিকেট দল"}, {text: "বাংলাদেশ কাবাডি দল"}],
+        correctAnswer: "বাংলাদেশ ক্রিকেট দল",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 54,
+        question: "ব্যাডমিন্টনে যে পালকের বলটি ব্যবহার হয়, তার নাম কী?",
+        options: [{text: "কর্ক"}, {text: "পালক বল"}, {text: "শাটলকক"}, {text: "বার্ডি"}],
+        correctAnswer: "শাটলকক",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 55,
+        question: "ক্রিকেট খেলায় এক ওভারে কয়টি বল করা হয়?",
+        options: [{text: "৪টি"}, {text: "৫টি"}, {text: "৬টি"}, {text: "৭টি"}],
+        correctAnswer: "৬টি",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 56,
+        question: "একজন খেলোয়াড়কে 'অলরাউন্ডার' কখন বলা হয়?",
+        options: [{text: "ব্যাটিংয়ে ভালো করলে"}, {text: "বোলিংয়ে ভালো করলে"}, {text: "ব্যাটিং ও বোলিং দুটোতেই ভালো করলে"}, {text: "ফিল্ডিংয়ে ভালো করলে"}],
+        correctAnswer: "ব্যাটিং ও বোলিং দুটোতেই ভালো করলে",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 57,
+        question: "ক্রিকেট খেলায় আউট হওয়ার একটি কারণ বলো।",
+        options: [{text: "বোল্ড"}, {text: "ক্যাচ আউট"}, {text: "এলবিডব্লিউ"}, {text: "সবগুলো"}],
+        correctAnswer: "সবগুলো",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 58,
+        question: "বাস্কেটবল খেলায় বল কোথায় ঢোকাতে হয়?",
+        options: [{text: "নেটে"}, {text: "বাস্কেটে (ঝুড়িতে)"}, {text: "গোলে"}, {text: "গর্তে"}],
+        correctAnswer: "বাস্কেটে (ঝুড়িতে)",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 59,
+        question: "কোনো খেলা শুরু করার আগে কী করা হয়?",
+        options: [{text: "টস"}, {text: "প্রার্থনা"}, {text: "ওয়ার্ম-আপ"}, {text: "বাঁশি"}],
+        correctAnswer: "টস",
+        topic: "খেলাধুলা"
+      },
+      {
+        id: 60,
+        question: "ক্রিকেটে সবচেয়ে বড় মারকে কী বলা হয়?",
+        options: [{text: "চার (৪ রান)"}, {text: "ছক্কা (৬ রান)"}, {text: "বাউন্ডারি"}, {text: "ওভার বাউন্ডারি"}],
+        correctAnswer: "ছক্কা (৬ রান)",
         topic: "খেলাধুলা"
       }
     ]
