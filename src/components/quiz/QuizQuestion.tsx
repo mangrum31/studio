@@ -91,8 +91,8 @@ export function QuizQuestion({ question, questionNumber, totalQuestions, onAnswe
               <Label
                 key={option.text}
                 htmlFor={option.text}
-                className={cn("flex flex-col items-center justify-center space-y-2 p-4 rounded-lg border transition-all cursor-pointer hover:bg-secondary/50", 
-                    selectedOption === option.text && !submitted && "border-primary",
+                className={cn("flex flex-col items-center justify-center space-y-2 p-4 rounded-lg border transition-all duration-300 ease-in-out cursor-pointer hover:bg-secondary/60 hover:shadow-lg hover:-translate-y-1", 
+                    selectedOption === option.text && !submitted && "border-primary ring-2 ring-primary shadow-lg",
                     submitted && option.text === question.correctAnswer && "border-green-500 bg-green-500/20",
                     submitted && option.text === selectedOption && !isCorrect && "border-destructive bg-destructive/10"
                 )}
